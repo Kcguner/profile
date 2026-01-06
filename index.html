@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="code-background"></canvas>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">&lt;KCG /&gt;</a>
+            <div class="nav-links" id="nav-links">
+                <ul>
+                    <li><a href="#" data-lang="nav_about">Hakkımda</a></li>
+                    <li><a href="#experience" data-lang="nav_experience">Projeler</a></li>
+                    <li><a href="#skills" data-lang="nav_skills">Yetenekler</a></li>
+                    <li><a href="#contact" data-lang="nav_contact">İletişim</a></li>
+                </ul>
+                <div class="header-actions">
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="nav-controls">
+                        <div class="lang-switch">
+                            <span id="lang-tr" class="active-lang">TR</span>
+                            <span class="divider">|</span>
+                            <span id="lang-en">EN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-text-content">
+                <h1 class="big-heading" data-lang="hero_greeting">Merhaba</h1>
+                <h2 class="big-heading name">Ben Kaan Can Güner</h2>
+                <h3 class="big-heading subtitle" data-lang="hero_subtitle">Web Geliştirici</h3>
+                <p class="hero-text" data-lang="hero_desc">
+                    Modern, duyarlı ve akıcı ara yüzler tasarlıyorum. Kod altyapısını güvenli ve optimize edilmiş
+                    şekilde kuruyorum. İsteğinize göre yönetici paneli, veri tabanı entegrasyonu ve Google SEO
+                    optimizasyonu dahil tüm süreçleri tamamlayarak sitelerinizi teslim ediyorum. Hazır şablon
+                    kullanmıyorum.
+                </p>
+                <p class="hero-motto">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <span data-lang="hero_motto">Her projeyi kendi işimmiş gibi düşünerek yapmak.</span>
+                    <i class="fa-solid fa-quote-right"></i>
+                </p>
+                <div class="hero-socials">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kcguner@gmail.com" target="_blank"
+                        class="social-btn" aria-label="Email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                    <a href="https://www.instagram.com/kaancang1" class="social-btn" target="_blank"
+                        aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/Kcguner" class="social-btn" target="_blank" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-profile">
+                <div class="profile-image-wrapper">
+                    <img src="images/profile.jpg" alt="Kaan Can Güner" class="profile-image">
+                    <div class="profile-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title"><span data-lang="projects_title">Projelerim</span>
+            </h2>
+            <div class="projects-container">
+
+                <!-- Project 1 -->
+                <article class="featured-project">
+                    <div class="project-img-wrapper" data-project="1">
+                        <img src="images/project1.webp" alt="Kendisibir Mekan">
+                    </div>
+                    <div class="project-content">
+                        <p class="project-overline" data-lang="project_overline">Öne Çıkan Proje</p>
+                        <h3 class="project-title" data-lang="project1_title">Kendisibir Mekan</h3>
+                        <div class="project-description">
+                            <p data-lang="project1_desc">
+                                Kendisibir Mekan, Üsküdar'da bulunan kitap-kafe-atölye konseptli bir işletme için
+                                geliştirilmiş modern ve responsive bir web sitesidir. Dinamik menü yönetimi, etkinlik
+                                duyuruları ve görsel galeri gibi özellikler içerir.
+                            </p>
+                        </div>
+                        <ul class="project-tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>Supabase</li>
+                            <li>Node.js</li>
+                            <li>Netlify</li>
+                        </ul>
+                        <div class="project-links">
+                            <button class="project-detail-btn" data-project="1" aria-label="Proje Detayları">
+                                <i class="fa-solid fa-globe"></i>
+                            </button>
+                            <a href="#" target="_blank" aria-label="External Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="featured-project">
+                    <div class="project-img-wrapper" data-project="2">
+                        <img src="images/project2.webp" alt="Crypto Scan - Kripto Para Analiz Paneli">
+                    </div>
+                    <div class="project-content">
+                        <p class="project-overline" data-lang="project_overline">Öne Çıkan Proje</p>
+                        <h3 class="project-title" data-lang="project2_title">Crypto Scan - Kripto Para Analiz Paneli
+                        </h3>
+                        <div class="project-description">
+                            <p data-lang="project2_desc">
+                                RSI ve Stochastic göstergeleri ile 20+ kripto parayı anlık izleyen, sinyal analizi sunan
+                                modern trading dashboard'u.
+                            </p>
+                        </div>
+                        <ul class="project-tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>Tailwind CSS</li>
+                            <li>Node.js</li>
+                            <li>Netlify</li>
+                        </ul>
+                        <div class="project-links">
+                            <button class="project-detail-btn" data-project="2" aria-label="Proje Detayları">
+                                <i class="fa-solid fa-globe"></i>
+                            </button>
+                            <a href="https://cryptoscann.netlify.app/" target="_blank" aria-label="External Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="featured-project">
+                    <div class="project-img-wrapper" data-project="3">
+                        <img src="images/project3.jpg" alt="Simple CV Maker">
+                    </div>
+                    <div class="project-content">
+                        <p class="project-overline" data-lang="project_overline">Öne Çıkan Proje</p>
+                        <h3 class="project-title" data-lang="project3_title">Simple CV Maker</h3>
+                        <div class="project-description">
+                            <p data-lang="project3_desc">
+                                Kullanıcıların kişisel bilgilerini girerek anlık önizleme ile modern ve şık özgeçmişler
+                                oluşturmasını sağlayan web aracı. PDF çıktı alma ve dinamik içerik yönetimi.
+                            </p>
+                        </div>
+                        <ul class="project-tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>DOM Manipulation</li>
+                            <li>html2pdf.js</li>
+                        </ul>
+                        <div class="project-links">
+                            <button class="project-detail-btn" data-project="3" aria-label="Proje Detayları">
+                                <i class="fa-solid fa-globe"></i>
+                            </button>
+                            <a href="https://kcguner.github.io/simplecvmaker/" target="_blank"
+                                aria-label="External Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title"><span data-lang="skills_title">Teknik
+                    Yetenekler</span></h2>
+            <div class="skills-wrapper">
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-brands fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-brands fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <span class="skill-percent">86%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 86%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-brands fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <span class="skill-percent">82%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 82%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-solid fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Supabase</span>
+                        </div>
+                        <span class="skill-percent">73%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 73%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top">
+                        <div class="skill-info">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <span>Responsive</span>
+                        </div>
+                        <span class="skill-percent">87%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 87%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container contact-content">
+            <h2 class="section-title"><span data-lang="contact_title">İletişim</span>
+            </h2>
+            <p data-lang="contact_desc">Projeleriniz veya sorularınız için bana ulaşabilirsiniz.</p>
+            <form id="contact-form" action="https://formspree.io/f/mregqddg" method="POST">
+                <div class="form-group">
+                    <label for="name" data-lang="form_name">Adınız</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-lang="form_email">E-posta</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-lang="form_message">Mesajınız</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" data-lang="form_submit">Gönder</button>
+            </form>
+            <!-- Toast Notification -->
+            <div id="toast" class="toast">
+                <i class="fa-solid fa-check-circle"></i>
+                <span data-lang="form_success">Mesajınız başarıyla gönderildi!</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Kapat">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-slider">
+                <button class="slider-btn slider-prev" aria-label="Önceki">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-container">
+                    <div id="slider-track" class="slider-track">
+                        <!-- Images will be added dynamically -->
+                    </div>
+                </div>
+                <button class="slider-btn slider-next" aria-label="Sonraki">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <div id="slider-dots" class="slider-dots"></div>
+            </div>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <ul id="modal-tech" class="modal-tech-list"></ul>
+            <p id="modal-desc" class="modal-description"></p>
+
+            <!-- Admin Panel Gallery Section -->
+            <div id="admin-gallery" class="admin-gallery-section">
+                <h4 class="admin-gallery-title">
+                    <i class="fa-solid fa-gear"></i>
+                    <span data-lang="admin_panel_title">Yönetici Paneli</span>
+                </h4>
+                <p id="admin-desc" class="admin-gallery-desc" data-lang="admin_panel_desc">
+                    Ürün ve kategori yönetimi, etkinlik duyuruları, içerik düzenleme ve galeri yönetimi özelliklerini
+                    içeren güvenli admin paneli.
+                </p>
+                <div id="admin-gallery-grid" class="admin-gallery-grid">
+                    <!-- Admin images will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <button id="scroll-indicator" class="scroll-indicator">
+                <i class="fa-solid fa-chevron-down"></i>
+                <span data-lang="scroll_hint">Devamı için kaydır</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox for full-size image -->
+    <div id="lightbox" class="lightbox-overlay">
+        <button class="lightbox-close" aria-label="Kapat">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="lightbox-btn lightbox-prev" aria-label="Önceki">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Büyütülmüş Görsel">
+        <button class="lightbox-btn lightbox-next" aria-label="Sonraki">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <footer>
+        <p data-lang="footer_text">Tasarım & Geliştirme: Kaan Can Güner</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
