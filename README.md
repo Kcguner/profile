@@ -5,7 +5,7 @@
   
   <h1>✨ Personal Portfolio Website</h1>
   <h3>
-    <a href="https://kcguner.github.io/profile/" target="_blank">LIVE ADRES : https://kcguner.github.io/profile/</a>
+    <a href="https://kcguner.github.io/profile/" target="_blank">LIVE: https://kcguner.github.io/profile/</a>
   </h3>
   
   <p>
