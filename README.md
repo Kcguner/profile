@@ -4,6 +4,9 @@
   <br/>
   
   <h1>✨ Personal Portfolio Website</h1>
+  <h3>
+    <a href="https://kcguner.github.io/profile/" target="_blank">LIVE ADRES : https://kcguner.github.io/profile/</a>
+  </h3>
   
   <p>
     <strong>Modern, Şık ve Etkileşimli Kişisel Web Sitesi</strong> <br>
@@ -17,8 +20,7 @@
 
   ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
   ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-  ![Netlify](https://img.shields.io/badge/netlify-%2300C7B7.svg?style=for-the-badge&logo=netlify&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
 </div>
 
 ---
@@ -58,19 +60,6 @@ Sitede sergilenen başlıca projeler:
 2.  **Crypto Scan:** 20+ kripto parayı anlık izleyen teknik analiz ve sinyal paneli.
 3.  **Simple CV Maker:** Anlık önizleme ile profesyonel özgeçmiş oluşturma aracı.
 
-### 💻 Kurulum ve Çalıştırma
-
-Bu proje herhangi bir framework veya derleme işlemi gerektirmez. Doğrudan tarayıcıda çalışır.
-
-1.  Repoyu klonlayın:
-    ```bash
-    git clone https://github.com/Kcguner/profile.git
-    ```
-2.  Klasörün içine girin:
-    ```bash
-    cd profile
-    ```
-3.  `index.html` dosyasını tarayıcınızda açın veya `Live Server` eklentisi ile başlatın.
 
 ---
 
@@ -108,20 +97,6 @@ Featured projects showcased on the site:
 1.  **Kendisibir Mekan:** A website with a dynamic admin panel developed for a venue in Üsküdar.
 2.  **Crypto Scan:** A technical analysis and signal dashboard monitoring 20+ cryptocurrencies in real-time.
 3.  **Simple CV Maker:** A professional resume building tool with real-time preview functionality.
-
-### 💻 Installation & Usage
-
-This project does not require any frameworks or build processes. It runs directly in the browser.
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/Kcguner/profile.git
-    ```
-2.  Navigate to the directory:
-    ```bash
-    cd profile
-    ```
-3.  Open `index.html` in your browser or start with the `Live Server` extension.
 
 ---
 
