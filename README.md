@@ -3,7 +3,8 @@
   
   <br/>
   
-  <h1>✨ Personal Portfolio Website</h1>
+  <h1>✨ Personal Portfolio Website </h1>
+  <h1>LIVE : https://kcguner.github.io/profile/</h1>
   
   <p>
     <strong>Modern, Şık ve Etkileşimli Kişisel Web Sitesi</strong> <br>
