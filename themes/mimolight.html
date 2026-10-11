@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>&lt;KCG /&gt; — Kaan Can Güner · El Basımı Portfolyo Zine</title>
+<meta name="description" content="Kaan Can Güner — web geliştirici & vibe coder. Şablon kullanmadan, sıfırdan kurulan web siteleri ve masaüstü araçları.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   mimolight — el basımı risograf zine
+   iki mürekkep: kor (flame) + federal mavi, krem kâğıt üstünde
+   ============================================================ */
+:root{
+  --paper:#F2ECDC;
+  --paper-2:#E9E1CB;
+  --paper-3:#DED3B8;
+  --ink:#191510;
+  --ink-soft:#4A4234;
+  --pencil:#8A8170;
+  --flame:#FF4A17;
+  --blue:#2230C6;
+  --rule:rgba(25,21,16,.24);
+  --shadow-hard:4px 4px 0 var(--blue);
+  --blend:multiply;
+  --grain:.5;
+  --sel-bg:var(--flame);
+  --sel-fg:#FFF3EA;
+}
+[data-theme="dark"]{
+  --paper:#17150F;
+  --paper-2:#1F1C14;
+  --paper-3:#2A2519;
+  --ink:#EFE7D2;
+  --ink-soft:#C3B99F;
+  --pencil:#8F8670;
+  --flame:#FF5C2B;
+  --blue:#7C86FF;
+  --rule:rgba(239,231,210,.22);
+  --shadow-hard:4px 4px 0 var(--blue);
+  --blend:screen;
+  --grain:.28;
+  --sel-bg:var(--flame);
+  --sel-fg:#17150F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+  position:relative;
+  transition:background .45s ease,color .45s ease;
+}
+/* kâğıt dokusu: tram noktaları + gürültü */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+  background-image:
+    radial-gradient(currentColor .5px,transparent .6px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  background-size:3px 3px,140px 140px;
+  opacity:var(--grain);
+  mix-blend-mode:var(--blend);
+}
+::selection{background:var(--sel-bg);color:var(--sel-fg)}
+a{color:inherit}
+h1,h2,h3{font-family:'Fraunces','Newsreader',serif;font-optical-sizing:auto;line-height:.92;letter-spacing:-.02em}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.16em;font-size:11px}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* --- kesim / registrasyon işaretleri --- */
+.crop{position:fixed;width:22px;height:22px;z-index:8;opacity:.5;pointer-events:none}
+.crop::before,.crop::after{content:"";position:absolute;background:var(--ink)}
+.crop::before{left:0;top:11px;width:22px;height:1px}
+.crop::after{top:0;left:11px;width:1px;height:22px}
+.crop.tl{top:14px;left:14px}.crop.tr{top:14px;right:14px}
+.crop.bl{bottom:14px;left:14px}.crop.br{bottom:14px;right:14px}
+
+/* --- cilt (sol diş şeridi) --- */
+.spine{
+  position:fixed;left:0;top:0;bottom:0;width:52px;z-index:7;
+  border-right:1px dashed var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);
+}
+.spine span{
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;
+}
+.spine .hole{position:absolute;left:21px;width:10px;height:10px;border:1px solid var(--rule);border-radius:50%}
+.spine .hole.h1{top:12%}.spine .hole.h2{top:50%}.spine .hole.h3{bottom:12%}
+@media(max-width:1080px){.spine{display:none}}
+
+/* ---------- künye / masthead ---------- */
+.masthead{
+  position:sticky;top:0;z-index:20;
+  background:var(--paper);
+  border-bottom:2px solid var(--ink);
+}
+.masthead .bar{
+  display:flex;align-items:center;gap:18px;
+  padding:10px 0 9px;
+}
+.logo{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;
+  text-decoration:none;letter-spacing:.02em;white-space:nowrap;
+}
+.logo em{font-style:normal;color:var(--flame)}
+.mast-date{color:var(--pencil);flex:1;border-left:1px solid var(--rule);padding-left:18px}
+.mast-nav{display:flex;gap:20px;list-style:none}
+.mast-nav a{
+  text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  text-transform:uppercase;letter-spacing:.14em;padding-bottom:2px;position:relative;
+}
+.mast-nav a sup{color:var(--flame);margin-right:5px;font-size:9px}
+.mast-nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-1px;height:2px;
+  background:var(--flame);transition:right .35s cubic-bezier(.2,.8,.2,1);
+}
+.mast-nav a:hover::after{right:0}
+.controls{display:flex;align-items:center;gap:8px;margin-left:6px}
+.ctl{
+  border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;padding:5px 9px;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease;
+}
+.ctl:hover{transform:translate(-1px,-1px);box-shadow:2px 2px 0 var(--blue)}
+.ctl:active{transform:translate(1px,1px);box-shadow:none}
+.ctl.on{background:var(--ink);color:var(--paper)}
+.lang{display:flex}
+.lang .ctl{border-right-width:0}
+.lang .ctl:last-child{border-right-width:1.5px}
+.burger{display:none}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 30px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--ink-soft)}
+.kicker::before{content:"";width:44px;height:2px;background:var(--flame)}
+.name{
+  font-size:clamp(56px,10.5vw,138px);
+  font-weight:900;font-variation-settings:'SOFT' 20,'WONK' 1;
+  text-transform:uppercase;margin:22px 0 6px;
+  text-shadow:3px 2px 0 rgba(255,74,23,.5),-2px -1px 0 rgba(34,48,198,.45);
+  filter:url(#inkbite);
+}
+.name .ln{display:block}
+.name .ln:nth-child(2){padding-left:.14em}
+.role{
+  display:inline-flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  border:2px solid var(--flame);color:var(--flame);
+  padding:7px 16px;transform:rotate(-1.4deg);margin:14px 0 26px;
+  font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:12px;
+}
+.role b{font-family:'Fraunces',serif;font-size:19px;letter-spacing:.02em;font-style:italic;text-transform:none}
+.role .vibe{color:var(--ink-soft);letter-spacing:.14em}
+.lead{font-size:19px;max-width:60ch;color:var(--ink-soft)}
+.lead b{color:var(--ink);font-weight:600;background:linear-gradient(transparent 62%,rgba(255,74,23,.28) 0)}
+.motto{
+  position:relative;margin:38px 0 0;padding:26px 30px 24px;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+  font-size:clamp(24px,3.4vw,40px);line-height:1.14;max-width:22ch;
+}
+.motto::before{
+  content:"“";position:absolute;left:-6px;top:-4px;font-size:70px;color:var(--flame);
+  font-family:'Fraunces',serif;line-height:1;
+}
+.motto .scribble{position:absolute;left:24px;right:14%;bottom:14px;height:12px;overflow:visible}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;list-style:none}
+.stats li{border-left:1px dashed var(--rule);padding-left:14px}
+.stats .k{display:block;color:var(--pencil)}
+.stats .v{font-family:'Fraunces',serif;font-size:26px;font-weight:700}
+.stats .v.hot{color:var(--flame)}
+
+/* --- basılı fotoğraf --- */
+.portrait{position:relative;padding:22px 22px 54px;margin-top:8px}
+.portrait::before{ /* bant */
+  content:"";position:absolute;left:-18px;top:4px;width:96px;height:26px;
+  background:rgba(255,214,120,.55);border-left:1px dashed rgba(0,0,0,.18);border-right:1px dashed rgba(0,0,0,.18);
+  transform:rotate(-24deg);mix-blend-mode:var(--blend);
+}
+.photo-box{position:relative;border:1.5px solid var(--ink);background:var(--paper-2);overflow:hidden;aspect-ratio:4/5}
+.photo-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo-box .shot{filter:grayscale(1) contrast(1.25) brightness(1.04);mix-blend-mode:var(--blend)}
+.photo-box .gh{opacity:.5;mix-blend-mode:var(--blend)}
+.photo-box .gh-r{filter:grayscale(1) contrast(1.4) sepia(1) hue-rotate(-28deg) saturate(5);transform:translate(4px,-3px)}
+.photo-box .gh-b{filter:grayscale(1) contrast(1.4) sepia(1) hue-rotate(190deg) saturate(5);transform:translate(-4px,3px)}
+.photo-box::after{ /* tram */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(0,0,0,.55) .7px,transparent .8px);
+  background-size:3.4px 3.4px;mix-blend-mode:var(--blend);opacity:.55;
+}
+.portrait.no-photo .photo-box img{display:none}
+.portrait.no-photo .photo-box::before{
+  content:"KCG";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:76px;font-weight:900;color:var(--flame);letter-spacing:-.03em;
+}
+.stamp{
+  position:absolute;right:-10px;bottom:16px;z-index:3;
+  border:2px solid var(--flame);color:var(--flame);border-radius:6px;
+  padding:9px 14px;transform:rotate(-8deg);background:rgba(255,74,23,.08);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  line-height:1.5;text-align:center;mix-blend-mode:var(--blend);
+}
+.stamp b{display:block;font-size:13px;letter-spacing:.24em}
+.caption{margin-top:14px;color:var(--pencil);font-style:italic;font-size:14.5px}
+
+/* --- şerit (marquee) --- */
+.ticker{
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  background:var(--blue);color:#F4EFE0;overflow:hidden;padding:11px 0;margin:54px 0 0;
+  transform:rotate(-.5deg) scale(1.02);
+}
+[data-theme="dark"] .ticker{color:#14120C}
+.ticker-track{display:flex;white-space:nowrap;width:max-content;animation:slide 26s linear infinite}
+.ticker-track span{
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;padding-right:34px;
+}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- bölümler ---------- */
+section{padding:88px 0 8px}
+.sec-head{display:flex;align-items:flex-end;gap:26px;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:44px}
+.sec-no{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--flame);padding-bottom:8px}
+.sec-head h2{font-size:clamp(34px,5vw,62px);font-weight:900;text-transform:uppercase;flex:1}
+.sec-note{max-width:34ch;color:var(--pencil);font-style:italic;font-size:15px;padding-bottom:8px}
+
+/* ---------- yöntem ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:1px dashed var(--rule)}
+.step{border-right:1px dashed var(--rule);padding:6px 28px 30px;position:relative}
+.step .n{
+  font-family:'Fraunces',serif;font-size:64px;font-weight:900;line-height:1;
+  color:var(--paper);-webkit-text-stroke:1.5px var(--ink);text-stroke:1.5px var(--ink);
+}
+[data-theme="dark"] .step .n{-webkit-text-stroke-color:var(--ink)}
+.step:nth-child(2) .n{-webkit-text-stroke-color:var(--flame)}
+.step:nth-child(3) .n{-webkit-text-stroke-color:var(--blue)}
+.step h3{font-size:25px;margin:12px 0 10px;font-weight:700}
+.step p{color:var(--ink-soft);font-size:16.5px}
+/* ---------- dosyalar / projeler ---------- */
+.files{display:flex;flex-direction:column}
+.file{
+  display:grid;grid-template-columns:96px 1fr 300px;gap:34px;
+  padding:46px 0;border-top:1px solid var(--rule);position:relative;
+  transition:background .3s ease;
+}
+.file:first-child{border-top:none;padding-top:10px}
+.file:hover{background:linear-gradient(90deg,rgba(255,74,23,.05),transparent 60%)}
+.file .idx{
+  font-family:'Fraunces',serif;font-size:74px;font-weight:900;line-height:.8;
+  color:transparent;-webkit-text-stroke:1.5px var(--ink);
+  position:sticky;top:96px;height:min-content;
+}
+.file:hover .idx{color:var(--flame);-webkit-text-stroke-color:var(--flame)}
+.file .cat{color:var(--pencil);margin-bottom:10px}
+.file h3{
+  font-size:clamp(30px,4vw,50px);font-weight:900;display:inline-block;position:relative;
+}
+.file h3 .tld{color:var(--flame)}
+.file .pull{
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;line-height:1.35;
+  margin:14px 0 12px;max-width:34ch;
+}
+.file .desc{color:var(--ink-soft);max-width:52ch;font-size:16.5px}
+.facts{list-style:none;margin:20px 0 0;display:grid;gap:0}
+.facts li{
+  display:flex;align-items:baseline;gap:8px;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);
+  padding:5px 0;border-bottom:1px dotted var(--rule);
+}
+.facts li::after{content:"";flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px)}
+.facts li b{color:var(--ink);font-weight:500}
+.stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;max-width:56ch}
+.chip{
+  border:1px solid var(--rule);padding:4px 10px;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);
+  background:var(--paper-2);transition:.2s ease;
+}
+.file:hover .chip{border-color:var(--ink)}
+.actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  padding:11px 18px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;
+  transition:transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--blue)}
+.btn:active{transform:translate(1px,1px);box-shadow:none}
+.btn-live{background:var(--flame);border-color:var(--flame);color:#FFF3EA;font-weight:600}
+.btn-live:hover{box-shadow:3px 3px 0 var(--ink)}
+.btn-open{border-style:dashed}
+.legend{color:var(--pencil);font-size:13.5px;font-style:italic;margin-top:20px}
+.legend b{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--rule)}
+.legend b.l1{background:var(--flame);color:#FFF3EA;border-color:var(--flame)}
+.legend b.l2{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* --- basılı küçük görsel (mock) --- */
+.thumb{position:relative;padding:10px 10px 34px;background:var(--paper-2);border:1.5px solid var(--ink)}
+.thumb::before{
+  content:"";position:absolute;left:-16px;top:-12px;width:84px;height:24px;z-index:2;
+  background:rgba(140,190,255,.4);transform:rotate(8deg);mix-blend-mode:var(--blend);
+  border-left:1px dashed rgba(0,0,0,.15);border-right:1px dashed rgba(0,0,0,.15);
+}
+.thumb .cap{position:absolute;left:12px;bottom:10px;right:12px;display:flex;justify-content:space-between;color:var(--pencil)}
+.mk{position:relative;height:100%;min-height:190px;border:1px solid var(--rule);background:var(--paper);padding:12px;overflow:hidden}
+.mk *{box-sizing:border-box}
+.mk-line{display:block;height:6px;background:var(--ink);opacity:.25;margin-bottom:6px}
+.mk-line.s{height:4px}.mk-line.w70{width:70%}.mk-line.w55{width:55%}.mk-line.w40{width:40%}.mk-line.w30{width:30%}
+/* TrueReviews rapor */
+.mk-report .mk-top{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.mk-report .mk-score{
+  margin-left:auto;font-family:'Fraunces',serif;font-weight:900;font-size:22px;color:var(--flame);
+}
+.mk-ring{width:44px;height:44px;border-radius:50%;border:5px solid var(--paper-3);border-top-color:var(--flame);border-right-color:var(--flame);transform:rotate(28deg);flex:0 0 auto}
+.mk-cols{display:flex;gap:8px}
+.mk-cols>*{flex:1}
+.mk-bars{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:10px}
+.mk-bars i{flex:1;height:var(--h);background:var(--blue);opacity:.75}
+.mk-strip{
+  position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);
+  font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.14em;padding:5px 8px;
+  display:flex;gap:8px;align-items:center;
+}
+.mk-strip em{font-style:normal;color:var(--flame)}
+/* Git-to-Portfolio */
+.mk-folio .mk-hero{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.mk-ava{width:32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;background:var(--paper-3)}
+.mk-tiles{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.mk-tile{border:1px solid var(--rule);height:38px;padding:6px;background:var(--paper-2)}
+.mk-pin{color:var(--flame);font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em}
+/* Watermark Cleaner */
+.mk-clean{display:flex;gap:0;height:calc(100% - 0px)}
+.mk-half{flex:1;position:relative;border:1px dashed var(--rule);overflow:hidden}
+.mk-shot{position:absolute;inset:8px;background:
+  linear-gradient(var(--paper-3),var(--paper-3)) padding-box;}
+.mk-shot::before{content:"";position:absolute;left:10%;top:18%;width:70%;height:6px;background:var(--ink);opacity:.3}
+.mk-shot::after{content:"";position:absolute;left:10%;top:34%;width:52%;height:4px;background:var(--ink);opacity:.22}
+.mk-wm{
+  position:absolute;left:0;right:0;bottom:8px;height:15px;background:repeating-linear-gradient(45deg,var(--pencil) 0 4px,transparent 4px 8px);
+  border-top:1px solid var(--flame);border-bottom:1px solid var(--flame);
+}
+.mk-half.clean .mk-wm{display:none}
+.mk-tag{
+  position:absolute;top:5px;left:5px;font-family:'IBM Plex Mono',monospace;font-size:8px;
+  letter-spacing:.12em;background:var(--ink);color:var(--paper);padding:2px 5px;
+}
+.mk-half.clean .mk-tag{background:var(--flame);color:#FFF3EA}
+.mk-badge-x{position:absolute;right:8px;top:10px;width:16px;height:16px;background:var(--blue);opacity:.7;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+/* PDF Splitter */
+.mk-pdf{display:flex;align-items:center;gap:9px;height:100%}
+.mk-stack{display:flex;flex-direction:column;gap:4px;flex:0 0 44px}
+.mk-page{height:24px;border:1.5px solid var(--ink);background:var(--paper-2);position:relative}
+.mk-page::after{content:"";position:absolute;left:5px;right:5px;top:6px;height:1.5px;background:var(--ink);opacity:.3;box-shadow:0 5px 0 var(--ink)}
+.mk-arrow{font-family:'IBM Plex Mono',monospace;color:var(--flame);font-size:14px}
+.mk-out{display:flex;gap:5px}
+.mk-mini{width:22px;height:30px;border:1px solid var(--blue);background:var(--paper)}
+.mk-prog{position:absolute;left:12px;right:12px;bottom:10px;height:4px;background:var(--paper-3)}
+.mk-prog i{display:block;height:100%;width:62%;background:var(--blue)}
+
+/* ---------- malzeme listesi ---------- */
+.kit-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.kit-col h3{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--flame);border-bottom:1.5px solid var(--ink);padding-bottom:8px;margin-bottom:6px;
+}
+.kit-col:nth-child(2) h3{color:var(--blue)}
+.kit-col ul{list-style:none}
+.kit-col li{
+  display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dotted var(--rule);
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.06em;
+}
+.kit-col li .sw{width:11px;height:11px;background:var(--flame);flex:0 0 auto;transform:rotate(45deg)}
+.kit-col:nth-child(2) li .sw{background:var(--blue)}
+.kit-col:nth-child(3) li .sw{background:var(--ink)}
+.kit-col li .dots{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(3px)}
+.kit-col li em{font-style:normal;color:var(--pencil);font-size:10.5px}
+
+/* ---------- iletişim ---------- */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+.form-sheet{border:2px solid var(--ink);background:var(--paper-2);padding:34px 32px 30px;position:relative}
+.form-sheet::before{
+  content:"YENİ";position:absolute;right:-14px;top:-16px;transform:rotate(7deg);
+  border:2px solid var(--blue);color:var(--blue);padding:4px 10px;background:var(--paper);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;
+}
+.field{margin-bottom:22px}
+.field label{display:block;margin-bottom:6px;color:var(--ink-soft)}
+.field input,.field textarea{
+  width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--ink);
+  color:var(--ink);font-family:'Newsreader',serif;font-size:18px;padding:6px 2px;resize:vertical;
+}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--flame);background:rgba(255,74,23,.05)}
+.hp{position:absolute;left:-9999px}
+.send{
+  border:2px solid var(--ink);background:var(--ink);color:var(--paper);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.send:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--flame)}
+.send:active{transform:translate(1px,1px);box-shadow:none}
+.send[data-state="busy"]{opacity:.6;pointer-events:none}
+.form-status{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.form-status.ok{color:var(--blue)}
+.form-status.err{color:var(--flame)}
+.channels{list-style:none;border-top:2px solid var(--ink)}
+.channels li{border-bottom:1px solid var(--rule)}
+.channels a{
+  display:flex;align-items:baseline;gap:16px;padding:17px 6px 15px;text-decoration:none;
+  transition:padding-left .25s ease,background .25s ease;
+}
+.channels a:hover{padding-left:18px;background:rgba(34,48,198,.06)}
+.channels .lbl{width:96px;color:var(--pencil);flex:0 0 auto}
+.channels .val{font-family:'Fraunces',serif;font-size:22px;font-weight:700;flex:1}
+.channels .arr{color:var(--flame);font-family:'IBM Plex Mono',monospace;font-size:12px}
+.channels a:hover .val{text-decoration:underline;text-decoration-style:wavy;text-underline-offset:5px;text-decoration-color:var(--flame)}
+.big-mail{
+  display:inline-block;margin-bottom:34px;font-family:'Fraunces',serif;font-weight:900;
+  font-size:clamp(24px,3.2vw,38px);text-decoration:none;word-break:break-all;
+}
+.big-mail:hover{text-decoration:underline wavy var(--flame);text-underline-offset:7px}
+
+/* ---------- kolofon ---------- */
+.colophon{
+  margin-top:100px;border-top:2px solid var(--ink);padding:34px 0 60px;
+  display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;align-items:flex-start;
+}
+.colophon p{max-width:56ch;color:var(--ink-soft);font-size:15px}
+.colophon .mark{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pencil);text-align:right;line-height:2;
+}
+
+/* ---------- dosya kapağı (modal) ---------- */
+.sheet-overlay{
+  position:fixed;inset:0;z-index:50;display:none;
+  background:rgba(25,21,16,.55);backdrop-filter:blur(3px);
+  padding:5vh 4vw;overflow:auto;
+}
+.sheet-overlay.open{display:block}
+.sheet{
+  width:min(880px,100%);margin:0 auto;background:var(--paper);
+  border:2px solid var(--ink);box-shadow:10px 10px 0 var(--blue);
+  padding:40px 44px 44px;position:relative;
+  animation:pop .35s cubic-bezier(.2,.9,.25,1.2);
+}
+@keyframes pop{from{opacity:0;transform:translateY(18px) rotate(.4deg)}to{opacity:1;transform:none}}
+.sheet::after{ /* kıvrım */
+  content:"";position:absolute;right:0;top:0;border-width:0 26px 26px 0;border-style:solid;
+  border-color:var(--paper-3) var(--paper);
+}
+.sheet-x{
+  position:absolute;right:14px;top:12px;background:none;border:none;cursor:pointer;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.15em;color:var(--ink);
+  text-transform:uppercase;padding:8px;z-index:2;
+}
+.sheet-x:hover{color:var(--flame)}
+.sheet .file-no{color:var(--flame);margin-bottom:12px}
+.sheet h3{font-size:clamp(30px,5vw,52px);font-weight:900;text-transform:uppercase;margin-bottom:6px}
+.sheet .pull{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink-soft);margin-bottom:22px}
+.sheet .thumb{margin:26px 0 30px}
+.points{list-style:none;margin:6px 0 26px;columns:2;column-gap:38px}
+.points li{
+  break-inside:avoid;padding:7px 0 7px 26px;position:relative;font-size:16px;
+  border-bottom:1px dotted var(--rule);
+}
+.points li::before{
+  content:"✓";position:absolute;left:2px;top:7px;color:var(--flame);
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+}
+.sheet h4{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--pencil);margin:26px 0 12px;border-bottom:1px solid var(--rule);padding-bottom:7px;
+}
+body.locked{overflow:hidden}
+/* ---------- beliriş ---------- */
+.rv{opacity:0;transform:translateY(22px) rotate(.3deg);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .ticker-track{animation:none}
+  *{scroll-behavior:auto!important}
+}
+
+/* ---------- duyarlı ---------- */
+@media(max-width:1080px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{max-width:340px}
+  .file{grid-template-columns:70px 1fr;}
+  .file .side{grid-column:2}
+  .file .idx{font-size:52px;top:80px}
+}
+@media(max-width:860px){
+  .mast-nav{display:none}
+  .mast-nav.open{
+    display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;
+    background:var(--paper);border-bottom:2px solid var(--ink);padding:6px 4vw 14px;
+  }
+  .mast-nav.open a{padding:13px 0;border-bottom:1px dotted var(--rule)}
+  .burger{display:inline-flex;margin-left:auto;order:3}
+  .mast-date{display:none}
+  .masthead .bar{position:relative;flex-wrap:wrap}
+  .controls{order:2}
+  .steps,.kit-groups,.contact-grid{grid-template-columns:1fr}
+  .steps{border-left:none}
+  .step{border-right:none;border-bottom:1px dashed var(--rule);padding:6px 0 26px}
+  .points{columns:1}
+  .sec-head{flex-wrap:wrap;gap:10px}
+  .sec-note{max-width:100%}
+  .file{grid-template-columns:1fr;gap:22px}
+  .file .idx{position:static;font-size:44px}
+  .file .side{grid-column:1}
+  .thumb{max-width:340px}
+}
+@media(max-width:520px){
+  body{font-size:16px}
+  .sheet{padding:34px 22px 34px}
+  .hero{padding-top:40px}
+  .stats{gap:16px}
+  .colophon{flex-direction:column}
+  .colophon .mark{text-align:left}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="inkbite">
+    <feTurbulence type="fractalNoise" baseFrequency="0.022 0.04" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+<aside class="spine" aria-hidden="true">
+  <span>Kaan Can Güner · Portfolyo Zine · Sayı 01 · İstanbul</span>
+  <i class="hole h1"></i><i class="hole h2"></i><i class="hole h3"></i>
+</aside>
+
+<header class="masthead">
+  <div class="wrap bar">
+    <a class="logo" href="#top">&lt;KCG <em>/</em>&gt;</a>
+    <p class="mast-date mono" data-i18n="mast_date">el basımı portfolyo · sayı 01 · istanbul</p>
+    <ul class="mast-nav" id="nav">
+      <li><a href="#method"><sup>01</sup><span data-i18n="nav_1">Yöntem</span></a></li>
+      <li><a href="#work"><sup>02</sup><span data-i18n="nav_2">Dosyalar</span></a></li>
+      <li><a href="#kit"><sup>03</sup><span data-i18n="nav_3">Malzeme</span></a></li>
+      <li><a href="#contact"><sup>04</sup><span data-i18n="nav_4">İletişim</span></a></li>
+    </ul>
+    <div class="controls">
+      <div class="lang" role="group" aria-label="language">
+        <button class="ctl lang-btn" data-lang="tr">TR</button>
+        <button class="ctl lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="ctl" id="theme-btn" aria-label="tema"></button>
+    </div>
+    <button class="ctl burger" id="burger" aria-label="menü">☰</button>
+  </div>
+</header>
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker mono rv" data-i18n="hero_kicker">web geliştirici · vibe coder · istanbul</p>
+      <h1 class="name rv"><span class="ln">Kaan&nbsp;Can</span><span class="ln">Güner</span></h1>
+      <p class="role rv"><b data-i18n="hero_role">Web Geliştirici</b><span class="vibe">/ vibe coder</span></p>
+      <p class="lead rv" data-i18n="hero_lead">Modern, responsive ve akıcı arayüzler tasarlıyorum; kod altyapısını <b>güvenli ve optimize</b> kuruyorum. Yönetici paneli, veritabanı entegrasyonu ve Google SEO dahil tüm süreci tamamlayıp siteyi teslim ediyorum. Hazır şablon kullanmıyorum — her satır sıfırdan.</p>
+      <blockquote class="motto rv">
+        <span data-i18n="hero_motto">Her projeyi kendi işimmiş gibi düşünerek yapmak.</span>
+        <svg class="scribble" viewBox="0 0 400 12" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M2,8 C60,2 120,11 190,6 C260,1 320,10 398,4" fill="none" stroke="var(--flame)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </blockquote>
+      <ul class="stats rv">
+        <li><span class="k mono" data-i18n="stat_1k">hazır şablon</span><span class="v hot">0</span></li>
+        <li><span class="k mono" data-i18n="stat_2k">teslim kapsamı</span><span class="v" data-i18n="stat_2v">uçtan uca</span></li>
+        <li><span class="k mono" data-i18n="stat_3k">diller</span><span class="v">TR · EN</span></li>
+      </ul>
+    </div>
+    <figure class="portrait rv">
+      <div class="photo-box">
+        <img class="gh gh-b" src="../images/profile.jpg" alt="" aria-hidden="true">
+        <img class="gh gh-r" src="../images/profile.jpg" alt="" aria-hidden="true">
+        <img class="shot" src="../images/profile.jpg" alt="Kaan Can Güner" onerror="document.body.classList.add('x');this.closest('.portrait').classList.add('no-photo')">
+      </div>
+      <div class="stamp" aria-hidden="true"><b>KCG</b><span data-i18n="stamp_word">kendi işim</span></div>
+      <figcaption class="caption" data-i18n="portrait_cap">Fotoğraf iki mürekkeple basıldı; registrasyon bilerek kaçık.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <span data-i18n="ticker_txt">şablon yok · sıfırdan üretim · kodun sahibi benim · her proje kendi işim · yönetici paneli · veritabanı · google seo ·</span>
+    <span data-i18n="ticker_txt">şablon yok · sıfırdan üretim · kodun sahibi benim · her proje kendi işim · yönetici paneli · veritabanı · google seo ·</span>
+  </div>
+</div>
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">01 / <span data-i18n="sec_method_no">yöntem</span></span>
+      <h2 data-i18n="method_title">Nasıl çalışıyorum</h2>
+      <p class="sec-note" data-i18n="method_note">Üç adımda teslim: tasarım, altyapı, sahiplenme. Ara adım yok, sürpriz fatura yok.</p>
+    </div>
+    <div class="steps">
+      <article class="step rv">
+        <div class="n">01</div>
+        <h3 data-i18n="m1_t">Arayüz</h3>
+        <p data-i18n="m1_d">Modern, responsive ve akıcı arayüzler. Telefonda da masada da aynı özen; dokunmatikte kaybolan menü, kırılan ızgara bırakmam.</p>
+      </article>
+      <article class="step rv">
+        <div class="n">02</div>
+        <h3 data-i18n="m2_t">Altyapı</h3>
+        <p data-i18n="m2_d">Kod altyapısı güvenli ve optimize: temiz mimari, hızlı açılış, kota ve bot koruması, arama motorlarının sevdiği yapı.</p>
+      </article>
+      <article class="step rv">
+        <div class="n">03</div>
+        <h3 data-i18n="m3_t">Teslim</h3>
+        <p data-i18n="m3_d">Yönetici paneli, veritabanı entegrasyonu ve Google SEO dahil tüm süreç tamamlanır; site çalışır halde teslim edilir.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">02 / <span data-i18n="sec_work_no">dosyalar</span></span>
+      <h2 data-i18n="work_title">Dosyalar</h2>
+      <p class="sec-note" data-i18n="work_note">Her kayıt bir dosya; kapağını açınca ne yaptığım, hangi mürekkebi kullandığım orada.</p>
+    </div>
+    <p class="legend rv" data-i18n-html="work_legend"><b class="l1">canlı</b> yayındaki site &nbsp;·&nbsp; <b class="l2">depo</b> GitHub kaynak kodu</p>
+
+    <div class="files">
+
+      <!-- 01 TrueReviews -->
+      <article class="file rv" data-file="01" id="proj-1">
+        <div class="idx">01</div>
+        <div class="main">
+          <p class="cat mono" data-i18n="p1_cat">web uygulaması · ücretsiz lead magnet</p>
+          <h3>True<span class="tld">Reviews</span></h3>
+          <p class="pull" data-i18n="p1_pull">Google Maps yorumlarını okuyup tek sayfalık özet çıkaran, 10 dilde çalışan ücretsiz araç.</p>
+          <p class="desc" data-i18n="p1_desc">Bir işletmenin yığınla yorumunu tarar, memnuniyet skorunu ve tekrarlayan övgü/şikâyet temalarını çıkarır, hafta için somut bir aksiyon önerisi üretir. Rapor çift onaylı e-posta ile açılır.</p>
+          <ul class="stack">
+            <li class="chip">Next.js 14</li><li class="chip">React 18</li><li class="chip">TypeScript</li>
+            <li class="chip">Tailwind CSS</li><li class="chip">Upstash Redis</li><li class="chip">Apify</li>
+            <li class="chip">Gemma / Google AI Studio</li><li class="chip">Brevo</li>
+            <li class="chip">Cloudflare Turnstile</li><li class="chip">Vercel</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-live" href="https://get-truereviews.vercel.app" target="_blank" rel="noopener"><span data-i18n="btn_live">Canlı site</span> ↗</a>
+            <button class="btn btn-open js-open" type="button"><span data-i18n="btn_open">Dosyayı aç</span> →</button>
+          </div>
+          <ul class="points" hidden>
+            <li data-i18n="p1_b1">Memnuniyet skoru çıkarır</li>
+            <li data-i18n="p1_b2">Tekrarlayan övgü / şikâyet temalarını listeler</li>
+            <li data-i18n="p1_b3">Somut bir haftalık aksiyon önerisi üretir</li>
+            <li data-i18n="p1_b4">Rapor çift onaylı e-posta ile açılır</li>
+            <li data-i18n="p1_b5">Redis tabanlı kota ve cache</li>
+            <li data-i18n="p1_b6">Turnstile ile bot koruması</li>
+            <li data-i18n="p1_b7">Arapça / Farsça için tam RTL desteği</li>
+            <li data-i18n="p1_b8">10 dilde çalışır</li>
+          </ul>
+        </div>
+        <div class="side">
+          <figure class="thumb">
+            <div class="mk mk-report">
+              <div class="mk-top">
+                <div class="mk-ring"></div>
+                <div class="mk-col" style="flex:1"><span class="mk-line s w70"></span><span class="mk-line s w55"></span></div>
+                <div class="mk-score">87</div>
+              </div>
+              <div class="mk-cols">
+                <div><span class="mk-line w70"></span><span class="mk-line w55"></span></div>
+                <div><span class="mk-line w55"></span><span class="mk-line w30"></span></div>
+              </div>
+              <div class="mk-bars">
+                <i style="--h:70%"></i><i style="--h:38%"></i><i style="--h:88%"></i><i style="--h:54%"></i>
+                <i style="--h:66%"></i><i style="--h:30%"></i><i style="--h:76%"></i>
+              </div>
+              <div class="mk-strip"><em>▸</em> RTL · 10 LANG · DOUBLE OPT-IN</div>
+            </div>
+            <figcaption class="cap mono"><span>TR-01</span><span data-i18n="thumb_cap">rapor özeti</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 02 Git-to-Portfolio -->
+      <article class="file rv" data-file="02" id="proj-2">
+        <div class="idx">02</div>
+        <div class="main">
+          <p class="cat mono" data-i18n="p2_cat">web aracı · github → portfolyo</p>
+          <h3>Git-to<span class="tld">-Portfolio</span></h3>
+          <p class="pull" data-i18n="p2_pull">Herhangi bir public GitHub profilini temiz, paylaşılabilir ve yazdırılabilir bir geliştirici portfolyosuna çevirir.</p>
+          <p class="desc" data-i18n="p2_desc">Kayıt yok, veritabanı yok. Pinli repolar öne çıkar, “Save as PDF” ile baskıya hazır çıktı alınır; dil bazlı Open Graph kartları ve JSON-LD ile paylaşımlarda doğru görünür.</p>
+          <ul class="stack">
+            <li class="chip">Next.js 16</li><li class="chip">React 19</li><li class="chip">TypeScript</li>
+            <li class="chip">Tailwind CSS</li><li class="chip">GitHub REST API</li>
+            <li class="chip">Vitest</li><li class="chip">CI</li><li class="chip">Vercel</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-live" href="https://git-to-portfolio.vercel.app" target="_blank" rel="noopener"><span data-i18n="btn_live">Canlı site</span> ↗</a>
+            <button class="btn btn-open js-open" type="button"><span data-i18n="btn_open">Dosyayı aç</span> →</button>
+          </div>
+          <ul class="points" hidden>
+            <li data-i18n="p2_b1">Kayıt yok, veritabanı yok</li>
+            <li data-i18n="p2_b2">Pinli repolar öne çıkar</li>
+            <li data-i18n="p2_b3">4 dil desteği</li>
+            <li data-i18n="p2_b4">“Save as PDF” çıktısı</li>
+            <li data-i18n="p2_b5">Dil bazlı Open Graph kartları</li>
+            <li data-i18n="p2_b6">JSON-LD ile SEO</li>
+            <li data-i18n="p2_b7">Yazdırılabilir, temiz düzen</li>
+            <li data-i18n="p2_b8">Vitest + CI güvencesi</li>
+          </ul>
+        </div>
+        <div class="side">
+          <figure class="thumb">
+            <div class="mk mk-folio">
+              <div class="mk-hero">
+                <div class="mk-ava"></div>
+                <div style="flex:1"><span class="mk-line s w70"></span><span class="mk-line s w40"></span></div>
+                <div class="mk-pin">PIN ★</div>
+              </div>
+              <div class="mk-tiles">
+                <div class="mk-tile"><span class="mk-line s w70"></span><span class="mk-line s w40"></span></div>
+                <div class="mk-tile"><span class="mk-line s w55"></span><span class="mk-line s w30"></span></div>
+                <div class="mk-tile"><span class="mk-line s w40"></span><span class="mk-line s w70"></span></div>
+                <div class="mk-tile"><span class="mk-line s w55"></span><span class="mk-line s w30"></span></div>
+              </div>
+              <div class="mk-strip"><em>▸</em> 4 LANG · OG CARD · JSON-LD · PDF</div>
+            </div>
+            <figcaption class="cap mono"><span>TR-02</span><span data-i18n="thumb_cap2">profil çıktısı</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 03 AI Watermark Cleaner -->
+      <article class="file rv" data-file="03" id="proj-3">
+        <div class="idx">03</div>
+        <div class="main">
+          <p class="cat mono" data-i18n="p3_cat">yerel araç · png · jpg · pdf · pptx</p>
+          <h3>AI&nbsp;Watermark<span class="tld"> Cleaner</span></h3>
+          <p class="pull" data-i18n="p3_pull">Gamma / Gemini gibi AI çıktılarındaki görünür filigranları kullanıcının kendi cihazında temizler.</p>
+          <p class="desc" data-i18n="p3_desc">Footer bandını kaldırır, köşe badge’ini inpaint ile siler, EXIF/XMP metadatasını temizler. Tamamen localhost’ta çalışır: buluta yükleme yok, telemetri yok.</p>
+          <ul class="stack">
+            <li class="chip">Python</li><li class="chip">Flask</li><li class="chip">PyMuPDF</li>
+            <li class="chip">OpenCV</li><li class="chip">Pillow</li><li class="chip">python-pptx</li>
+            <li class="chip">PyInstaller</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://github.com/Kcguner/ai-watermark-cleaner" target="_blank" rel="noopener"><span data-i18n="btn_repo">Kaynak kod</span> ↗</a>
+            <button class="btn btn-open js-open" type="button"><span data-i18n="btn_open">Dosyayı aç</span> →</button>
+          </div>
+          <ul class="points" hidden>
+            <li data-i18n="p3_b1">PNG, JPG, PDF ve PPTX destekler</li>
+            <li data-i18n="p3_b2">Footer bandını kaldırır</li>
+            <li data-i18n="p3_b3">Köşe badge’ini inpaint ile siler</li>
+            <li data-i18n="p3_b4">EXIF / XMP metadata temizler</li>
+            <li data-i18n="p3_b5">Tamamen localhost — buluta yükleme yok</li>
+            <li data-i18n="p3_b6">Telemetri yok</li>
+            <li data-i18n="p3_b7">5 dil</li>
+            <li data-i18n="p3_b8">PyInstaller ile Windows EXE</li>
+          </ul>
+        </div>
+        <div class="side">
+          <figure class="thumb">
+            <div class="mk mk-clean">
+              <div class="mk-half">
+                <div class="mk-shot"></div>
+                <div class="mk-badge-x"></div>
+                <div class="mk-wm"></div>
+                <span class="mk-tag">BEFORE</span>
+              </div>
+              <div class="mk-half clean">
+                <div class="mk-shot"></div>
+                <span class="mk-tag">CLEAN</span>
+              </div>
+            </div>
+            <figcaption class="cap mono"><span>TR-03</span><span data-i18n="thumb_cap3">önce / sonra</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 04 PDF Splitter -->
+      <article class="file rv" data-file="04" id="proj-4">
+        <div class="idx">04</div>
+        <div class="main">
+          <p class="cat mono" data-i18n="p4_cat">masaüstü uygulaması · windows</p>
+          <h3>PDF<span class="tld"> Splitter</span></h3>
+          <p class="pull" data-i18n="p4_pull">PDF’leri tek tıkla sayfa sayfa ayıran, aralık seçip birleştiren masaüstü uygulaması.</p>
+          <p class="desc" data-i18n="p4_desc">Sürükle-bırak, küçük resim önizlemesi ve canlı ilerleme ile donmayan bir arayüz. Beş dil, koyu/açık tema; ağır dosyalarda bile tepkili kalır.</p>
+          <ul class="stack">
+            <li class="chip">Python</li><li class="chip">CustomTkinter</li><li class="chip">pypdf</li>
+            <li class="chip">PyMuPDF</li><li class="chip">Pillow</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://github.com/Kcguner/pdf-splitter" target="_blank" rel="noopener"><span data-i18n="btn_repo">Kaynak kod</span> ↗</a>
+            <button class="btn btn-open js-open" type="button"><span data-i18n="btn_open">Dosyayı aç</span> →</button>
+          </div>
+          <ul class="points" hidden>
+            <li data-i18n="p4_b1">Sayfa sayfa / her N sayfada / özel aralık</li>
+            <li data-i18n="p4_b2">PDF birleştirme</li>
+            <li data-i18n="p4_b3">Sürükle-bırak dosya ekleme</li>
+            <li data-i18n="p4_b4">Küçük resim önizleme</li>
+            <li data-i18n="p4_b5">Canlı ilerleme, donmayan arayüz</li>
+            <li data-i18n="p4_b6">5 dil</li>
+            <li data-i18n="p4_b7">Koyu / açık tema</li>
+            <li data-i18n="p4_b8">Toplu işlem</li>
+          </ul>
+        </div>
+        <div class="side">
+          <figure class="thumb">
+            <div class="mk mk-pdf">
+              <div class="mk-stack">
+                <div class="mk-page"></div><div class="mk-page"></div><div class="mk-page"></div>
+              </div>
+              <div class="mk-arrow">⟶</div>
+              <div class="mk-out">
+                <div class="mk-mini"></div><div class="mk-mini"></div><div class="mk-mini"></div><div class="mk-mini"></div>
+              </div>
+              <div class="mk-prog"><i></i></div>
+            </div>
+            <figcaption class="cap mono"><span>TR-04</span><span data-i18n="thumb_cap4">bölme işleme</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<section id="kit">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">03 / <span data-i18n="sec_kit_no">malzeme</span></span>
+      <h2 data-i18n="kit_title">Malzeme listesi</h2>
+      <p class="sec-note" data-i18n="kit_note">Atölyede gerçekten duran mürekkep ve aletler; yüzde değil, kullanılan malzeme.</p>
+    </div>
+    <div class="kit-groups">
+      <div class="kit-col rv">
+        <h3 data-i18n="kit_g1">Arayüz &amp; katman</h3>
+        <ul>
+          <li><i class="sw"></i>HTML5<span class="dots"></span></li>
+          <li><i class="sw"></i>CSS3<span class="dots"></span></li>
+          <li><i class="sw"></i>JavaScript<span class="dots"></span></li>
+          <li><i class="sw"></i>TypeScript<span class="dots"></span></li>
+          <li><i class="sw"></i><span data-i18n="kit_rwd">Responsive tasarım</span><span class="dots"></span></li>
+        </ul>
+      </div>
+      <div class="kit-col rv">
+        <h3 data-i18n="kit_g2">Veri &amp; servis</h3>
+        <ul>
+          <li><i class="sw"></i>SQL<span class="dots"></span></li>
+          <li><i class="sw"></i>Supabase<span class="dots"></span></li>
+          <li><i class="sw"></i>Redis<span class="dots"></span><em>kota · cache</em></li>
+        </ul>
+      </div>
+      <div class="kit-col rv">
+        <h3 data-i18n="kit_g3">Üretim &amp; araçlar</h3>
+        <ul>
+          <li><i class="sw"></i>Next.js / React<span class="dots"></span><em data-i18n="kit_web">web projeleri</em></li>
+          <li><i class="sw"></i>Python<span class="dots"></span><em data-i18n="kit_desktop">masaüstü araçlar</em></li>
+          <li><i class="sw"></i>Google SEO<span class="dots"></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">04 / <span data-i18n="sec_contact_no">iletişim</span></span>
+      <h2 data-i18n="contact_title">Bir işiniz mi var?</h2>
+      <p class="sec-note" data-i18n="contact_note">Kısa bir mesaj yeterli. Genelde aynı gün dönüyorum.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="form-sheet rv" id="form" action="https://formspree.io/f/mregqddg" method="POST">
+        <div class="field">
+          <label class="mono" for="f-name" data-i18n="form_name">Adınız</label>
+          <input id="f-name" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="mono" for="f-mail" data-i18n="form_mail">E-posta</label>
+          <input id="f-mail" type="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label class="mono" for="f-msg" data-i18n="form_msg">Mesajınız</label>
+          <textarea id="f-msg" name="message" rows="5" required></textarea>
+        </div>
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        <button class="send" type="submit"><span data-i18n="form_send">Zarfı postala</span> ✈</button>
+        <p class="form-status mono" id="status" role="status"></p>
+      </form>
+      <div class="rv">
+        <a class="big-mail" href="mailto:kcguner@gmail.com">kcguner<wbr>@gmail.com</a>
+        <ul class="channels">
+          <li><a href="mailto:kcguner@gmail.com"><span class="lbl mono" data-i18n="ch_mail">E-posta</span><span class="val">kcguner@gmail.com</span><span class="arr">↗</span></a></li>
+          <li><a href="https://www.instagram.com/kaancang1" target="_blank" rel="noopener"><span class="lbl mono">Instagram</span><span class="val">@kaancang1</span><span class="arr">↗</span></a></li>
+          <li><a href="https://github.com/Kcguner" target="_blank" rel="noopener"><span class="lbl mono">GitHub</span><span class="val">Kcguner</span><span class="arr">↗</span></a></li>
+          <li><a href="https://x.com/Kaancang1" target="_blank" rel="noopener"><span class="lbl mono">X</span><span class="val">@Kaancang1</span><span class="arr">↗</span></a></li>
+          <li><a href="https://maps.google.com/?q=Istanbul" target="_blank" rel="noopener"><span class="lbl mono" data-i18n="ch_loc">Konum</span><span class="val">İstanbul</span><span class="arr">↗</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="colophon wrap">
+  <p data-i18n="colophon">Bu sayfa hazır tema kullanılmadan dizildi: Fraunces &amp; Newsreader &amp; IBM Plex Mono, iki mürekkep, bir raster. Tasarım &amp; geliştirme: Kaan Can Güner.</p>
+  <p class="mark">
+    &lt;KCG /&gt;<br>
+    <span data-i18n="foot_2">el basımı · sayı 01</span><br>
+    © <span id="yr">2026</span> İstanbul
+  </p>
+</footer>
+</main>
+
+<div class="sheet-overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet">
+    <button class="sheet-x" id="close" aria-label="Kapat">[ esc ] ✕</button>
+    <p class="file-no mono" id="sheet-no">DOSYA</p>
+    <h3 id="sheet-title"></h3>
+    <p class="pull" id="sheet-pull"></p>
+    <p class="desc" id="sheet-desc"></p>
+    <div id="sheet-thumb"></div>
+    <h4 data-i18n="lbl_points">Neler yapıyor</h4>
+    <ul class="points" id="sheet-points"></ul>
+    <h4 data-i18n="lbl_stack">Teknoloji</h4>
+    <ul class="stack" id="sheet-stack"></ul>
+    <h4 data-i18n="lbl_links">Bağlantılar</h4>
+    <div class="actions" id="sheet-actions"></div>
+  </div>
+</div>
+<script>
+const I18N = {
+tr:{
+  mast_date:"el basımı portfolyo · sayı 01 · istanbul",
+  nav_1:"Yöntem",nav_2:"Dosyalar",nav_3:"Malzeme",nav_4:"İletişim",
+  hero_kicker:"web geliştirici · vibe coder · istanbul",
+  hero_role:"Web Geliştirici",
+  hero_lead:"Modern, responsive ve akıcı arayüzler tasarlıyorum; kod altyapısını <b>güvenli ve optimize</b> kuruyorum. Yönetici paneli, veritabanı entegrasyonu ve Google SEO dahil tüm süreci tamamlayıp siteyi teslim ediyorum. Hazır şablon kullanmıyorum — her satır sıfırdan.",
+  hero_motto:"Her projeyi kendi işimmiş gibi düşünerek yapmak.",
+  stat_1k:"hazır şablon",stat_2k:"teslim kapsamı",stat_2v:"uçtan uca",stat_3k:"diller",
+  stamp_word:"kendi işim",
+  portrait_cap:"Fotoğraf iki mürekkeple basıldı; registrasyon bilerek kaçık.",
+  ticker_txt:"şablon yok · sıfırdan üretim · kodun sahibi benim · her proje kendi işim · yönetici paneli · veritabanı · google seo ·",
+  sec_method_no:"yöntem",method_title:"Nasıl çalışıyorum",
+  method_note:"Üç adımda teslim: tasarım, altyapı, sahiplenme. Ara adım yok, sürpriz fatura yok.",
+  m1_t:"Arayüz",m1_d:"Modern, responsive ve akıcı arayüzler. Telefonda da masada da aynı özen; dokunmatikte kaybolan menü, kırılan ızgara bırakmam.",
+  m2_t:"Altyapı",m2_d:"Kod altyapısı güvenli ve optimize: temiz mimari, hızlı açılış, kota ve bot koruması, arama motorlarının sevdiği yapı.",
+  m3_t:"Teslim",m3_d:"Yönetici paneli, veritabanı entegrasyonu ve Google SEO dahil tüm süreç tamamlanır; site çalışır halde teslim edilir.",
+  sec_work_no:"dosyalar",work_title:"Dosyalar",
+  work_note:"Her kayıt bir dosya; kapağını açınca ne yaptığım, hangi mürekkebi kullandığım orada.",
+  work_legend:'<b class="l1">canlı</b> yayındaki site &nbsp;·&nbsp; <b class="l2">depo</b> GitHub kaynak kodu',
+  btn_live:"Canlı site",btn_repo:"Kaynak kod",btn_open:"Dosyayı aç",
+  thumb_cap:"rapor özeti",thumb_cap2:"profil çıktısı",thumb_cap3:"önce / sonra",thumb_cap4:"bölme işlemi",
+  p1_cat:"web uygulaması · ücretsiz lead magnet",
+  p1_pull:"Google Maps yorumlarını okuyup tek sayfalık özet çıkaran, 10 dilde çalışan ücretsiz araç.",
+  p1_desc:"Bir işletmenin yığınla yorumunu tarar, memnuniyet skorunu ve tekrarlayan övgü/şikâyet temalarını çıkarır, hafta için somut bir aksiyon önerisi üretir. Rapor çift onaylı e-posta ile açılır.",
+  p1_b1:"Memnuniyet skoru çıkarır",p1_b2:"Tekrarlayan övgü / şikâyet temalarını listeler",
+  p1_b3:"Somut bir haftalık aksiyon önerisi üretir",p1_b4:"Rapor çift onaylı e-posta ile açılır",
+  p1_b5:"Redis tabanlı kota ve cache",p1_b6:"Turnstile ile bot koruması",
+  p1_b7:"Arapça / Farsça için tam RTL desteği",p1_b8:"10 dilde çalışır",
+  p2_cat:"web aracı · github → portfolyo",
+  p2_pull:"Herhangi bir public GitHub profilini temiz, paylaşılabilir ve yazdırılabilir bir geliştirici portfolyosuna çevirir.",
+  p2_desc:"Kayıt yok, veritabanı yok. Pinli repolar öne çıkar, “Save as PDF” ile baskıya hazır çıktı alınır; dil bazlı Open Graph kartları ve JSON-LD ile paylaşımlarda doğru görünür.",
+  p2_b1:"Kayıt yok, veritabanı yok",p2_b2:"Pinli repolar öne çıkar",p2_b3:"4 dil desteği",
+  p2_b4:"“Save as PDF” çıktısı",p2_b5:"Dil bazlı Open Graph kartları",p2_b6:"JSON-LD ile SEO",
+  p2_b7:"Yazdırılabilir, temiz düzen",p2_b8:"Vitest + CI güvencesi",
+  p3_cat:"yerel araç · png · jpg · pdf · pptx",
+  p3_pull:"Gamma / Gemini gibi AI çıktılarındaki görünür filigranları kullanıcının kendi cihazında temizler.",
+  p3_desc:"Footer bandını kaldırır, köşe badge’ini inpaint ile siler, EXIF/XMP metadatasını temizler. Tamamen localhost’ta çalışır: buluta yükleme yok, telemetri yok.",
+  p3_b1:"PNG, JPG, PDF ve PPTX destekler",p3_b2:"Footer bandını kaldırır",
+  p3_b3:"Köşe badge’ini inpaint ile siler",p3_b4:"EXIF / XMP metadata temizler",
+  p3_b5:"Tamamen localhost — buluta yükleme yok",p3_b6:"Telemetri yok",
+  p3_b7:"5 dil",p3_b8:"PyInstaller ile Windows EXE",
+  p4_cat:"masaüstü uygulaması · windows",
+  p4_pull:"PDF’leri tek tıkla sayfa sayfa ayıran, aralık seçip birleştiren masaüstü uygulaması.",
+  p4_desc:"Sürükle-bırak, küçük resim önizlemesi ve canlı ilerleme ile donmayan bir arayüz. Beş dil, koyu/açık tema; ağır dosyalarda bile tepkili kalır.",
+  p4_b1:"Sayfa sayfa / her N sayfada / özel aralık",p4_b2:"PDF birleştirme",p4_b3:"Sürükle-bırak dosya ekleme",
+  p4_b4:"Küçük resim önizleme",p4_b5:"Canlı ilerleme, donmayan arayüz",p4_b6:"5 dil",
+  p4_b7:"Koyu / açık tema",p4_b8:"Toplu işlem",
+  sec_kit_no:"malzeme",kit_title:"Malzeme listesi",
+  kit_note:"Atölyede gerçekten duran mürekkep ve aletler; yüzde değil, kullanılan malzeme.",
+  kit_g1:"Arayüz &amp; katman",kit_g2:"Veri &amp; servis",kit_g3:"Üretim &amp; araçlar",
+  kit_rwd:"Responsive tasarım",kit_web:"web projeleri",kit_desktop:"masaüstü araçlar",
+  sec_contact_no:"iletişim",contact_title:"Bir işiniz mi var?",
+  contact_note:"Kısa bir mesaj yeterli. Genelde aynı gün dönüyorum.",
+  form_name:"Adınız",form_mail:"E-posta",form_msg:"Mesajınız",form_send:"Zarfı postala",
+  form_sending:"postalanıyor…",form_ok:"Mesaj yola çıktı, teşekkürler.",form_err:"Gitmedi — doğrudan e-posta atabilirsiniz.",
+  ch_mail:"E-posta",ch_loc:"Konum",
+  colophon:"Bu sayfa hazır tema kullanılmadan dizildi: Fraunces & Newsreader & IBM Plex Mono, iki mürekkep, bir raster. Tasarım & geliştirme: Kaan Can Güner.",
+  foot_2:"el basımı · sayı 01",
+  lbl_points:"Neler yapıyor",lbl_stack:"Teknoloji",lbl_links:"Bağlantılar",
+  sheet_prefix:"Dosya"
+},
+en:{
+  mast_date:"hand-pulled portfolio zine · issue 01 · istanbul",
+  nav_1:"Method",nav_2:"Files",nav_3:"Supplies",nav_4:"Contact",
+  hero_kicker:"web developer · vibe coder · istanbul",
+  hero_role:"Web Developer",
+  hero_lead:"I design modern, responsive, fluid interfaces and build the codebase <b>secure and optimized</b>. Admin panel, database integration, Google SEO — I carry the whole process and hand the site over finished. No bought templates: every line starts from zero.",
+  hero_motto:"I treat every project as if it were my own business.",
+  stat_1k:"bought templates",stat_2k:"delivery",stat_2v:"full stack",stat_3k:"languages",
+  stamp_word:"my own skin",
+  portrait_cap:"Printed in two inks; the registration is off on purpose.",
+  ticker_txt:"no templates · built from zero · i own my code · every project is my own business · admin panels · databases · google seo ·",
+  sec_method_no:"method",method_title:"How I work",
+  method_note:"Three steps to delivery: design, infrastructure, ownership. Nothing in between, no surprise invoices.",
+  m1_t:"Interface",m1_d:"Modern, responsive, fluid interfaces. Same care on a phone and on a desk — no menus that vanish on touch, no grids that snap.",
+  m2_t:"Infrastructure",m2_d:"The codebase is secure and optimized: clean architecture, fast first paint, quotas and bot protection, a structure search engines like.",
+  m3_t:"Delivery",m3_d:"Admin panel, database integration and Google SEO included — the whole process closes and the site ships running.",
+  sec_work_no:"files",work_title:"Files",
+  work_note:"Every entry is a case file; open the cover to see what I did and which inks I used.",
+  work_legend:'<b class="l1">live</b> the site in the wild &nbsp;·&nbsp; <b class="l2">repo</b> source code on GitHub',
+  btn_live:"Live site",btn_repo:"Source code",btn_open:"Open file",
+  thumb_cap:"report summary",thumb_cap2:"profile output",thumb_cap3:"before / after",thumb_cap4:"splitting job",
+  p1_cat:"web app · free lead magnet",
+  p1_pull:"A free tool that reads Google Maps reviews and turns them into a one-page summary, in 10 languages.",
+  p1_desc:"It scans a business’s wall of reviews, pulls a satisfaction score and the recurring praise/complaint themes, then proposes one concrete action for the week. The report opens through double opt-in email.",
+  p1_b1:"Outputs a satisfaction score",p1_b2:"Lists recurring praise / complaint themes",
+  p1_b3:"Proposes one concrete weekly action",p1_b4:"Report unlocks via double opt-in email",
+  p1_b5:"Redis-backed quotas and caching",p1_b6:"Bot protection with Turnstile",
+  p1_b7:"Full RTL for Arabic / Persian",p1_b8:"Runs in 10 languages",
+  p2_cat:"web tool · github → portfolio",
+  p2_pull:"Turns any public GitHub profile into a clean, shareable, printable developer portfolio.",
+  p2_desc:"No sign-up, no database. Pinned repos step forward, “Save as PDF” gives a print-ready sheet; language-aware Open Graph cards and JSON-LD make shares look right.",
+  p2_b1:"No accounts, no database",p2_b2:"Pinned repos step forward",p2_b3:"4 languages",
+  p2_b4:"“Save as PDF” output",p2_b5:"Per-language Open Graph cards",p2_b6:"SEO with JSON-LD",
+  p2_b7:"Clean print-ready layout",p2_b8:"Guarded by Vitest + CI",
+  p3_cat:"local tool · png · jpg · pdf · pptx",
+  p3_pull:"Removes visible watermarks from AI outputs like Gamma or Gemini, on the user’s own machine.",
+  p3_desc:"Strips footer bands, inpaints corner badges, clears EXIF/XMP metadata. Runs entirely on localhost: no uploads to the cloud, no telemetry.",
+  p3_b1:"Handles PNG, JPG, PDF and PPTX",p3_b2:"Removes footer bands",
+  p3_b3:"Inpaints corner badges away",p3_b4:"Clears EXIF / XMP metadata",
+  p3_b5:"Entirely localhost — nothing leaves the device",p3_b6:"Zero telemetry",
+  p3_b7:"5 languages",p3_b8:"Windows EXE via PyInstaller",
+  p4_cat:"desktop app · windows",
+  p4_pull:"A desktop app that splits PDFs page by page in one click, and merges by chosen ranges.",
+  p4_desc:"Drag-and-drop, thumbnail previews and live progress in an interface that never freezes. Five languages, dark/light theme — and it stays responsive on heavy files.",
+  p4_b1:"Page by page / every N pages / custom range",p4_b2:"PDF merging",p4_b3:"Drag-and-drop file intake",
+  p4_b4:"Thumbnail previews",p4_b5:"Live progress, non-blocking interface",p4_b6:"5 languages",
+  p4_b7:"Dark / light theme",p4_b8:"Batch processing",
+  sec_kit_no:"supplies",kit_title:"Supplies",
+  kit_note:"The inks and tools really sitting on the bench — not percentages, actual material.",
+  kit_g1:"Interface &amp; layer",kit_g2:"Data &amp; service",kit_g3:"Making &amp; tools",
+  kit_rwd:"Responsive design",kit_web:"web projects",kit_desktop:"desktop tools",
+  sec_contact_no:"contact",contact_title:"Got something brewing?",
+  contact_note:"A short message is enough. I usually reply the same day.",
+  form_name:"Your name",form_mail:"Email",form_msg:"Your message",form_send:"Mail the envelope",
+  form_sending:"mailing…",form_ok:"Message is on its way, thanks.",form_err:"Didn’t go through — emailing me directly works too.",
+  ch_mail:"Email",ch_loc:"Location",
+  colophon:"This page was typeset without a bought theme: Fraunces & Newsreader & IBM Plex Mono, two inks, one raster. Design & build: Kaan Can Güner.",
+  foot_2:"hand-pulled · issue 01",
+  lbl_points:"What it does",lbl_stack:"Technology",lbl_links:"Links",
+  sheet_prefix:"File"
+}};
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const root=document.documentElement;
+const LKEY="mimolight.lang", TKEY="mimolight.theme";
+
+/* --- dil --- */
+let lang=localStorage.getItem(LKEY);
+if(!lang){ lang=(navigator.language||"tr").toLowerCase().indexOf("tr")===0 ? "tr" : "en"; }
+let current=null;
+
+function applyLang(){
+  root.setAttribute("lang",lang);
+  $$("[data-i18n],[data-i18n-html]").forEach(el=>{
+    const k=el.getAttribute("data-i18n")||el.getAttribute("data-i18n-html");
+    const v=I18N[lang][k];
+    if(v!=null) el.innerHTML=v;
+  });
+  $$(".lang-btn").forEach(b=>b.classList.toggle("on",b.dataset.lang===lang));
+  $("#theme-btn").setAttribute("aria-label",lang==="tr"?"tema":"theme");
+  if(current) fill(current);
+}
+$$(".lang-btn").forEach(b=>b.addEventListener("click",()=>{
+  lang=b.dataset.lang; localStorage.setItem(LKEY,lang); applyLang();
+}));
+
+/* --- tema (pozitif / negatif baskı) --- */
+let theme=localStorage.getItem(TKEY)||"light";
+function applyTheme(){
+  root.setAttribute("data-theme",theme);
+  $("#theme-btn").textContent = theme==="light" ? "☀ pozitif" : "◐ negatif";
+}
+$("#theme-btn").addEventListener("click",()=>{
+  theme = theme==="light" ? "dark" : "light";
+  localStorage.setItem(TKEY,theme); applyTheme();
+});
+
+/* --- gezinme --- */
+$("#burger").addEventListener("click",()=>$("#nav").classList.toggle("open"));
+$$("#nav a").forEach(a=>a.addEventListener("click",()=>$("#nav").classList.remove("open")));
+
+/* --- belirişler --- */
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+  $$(".rv").forEach((el,i)=>{ el.style.transitionDelay=(Math.min(i,4)*60)+"ms"; io.observe(el); });
+}else{
+  $$(".rv").forEach(el=>el.classList.add("in"));
+}
+
+/* --- dosya kapağı --- */
+const overlay=$("#overlay"), sheetClose=$("#close");
+function fill(article){
+  current=article;
+  $("#sheet-no").textContent=I18N[lang].sheet_prefix+" "+article.dataset.file;
+  $("#sheet-title").innerHTML=article.querySelector("h3").innerHTML;
+  $("#sheet-pull").innerHTML=article.querySelector(".pull").innerHTML;
+  $("#sheet-desc").innerHTML=article.querySelector(".desc").innerHTML;
+  const th=article.querySelector(".thumb");
+  $("#sheet-thumb").innerHTML="";
+  if(th) $("#sheet-thumb").appendChild(th.cloneNode(true));
+  $("#sheet-points").innerHTML=article.querySelector(".points").innerHTML;
+  $("#sheet-stack").innerHTML=article.querySelector(".stack").innerHTML;
+  const acts=article.querySelector(".actions").cloneNode(true);
+  $$(".js-open",acts).forEach(b=>b.remove());
+  $("#sheet-actions").innerHTML="";
+  $("#sheet-actions").appendChild(acts);
+}
+function open(article){
+  fill(article);
+  overlay.classList.add("open");
+  document.body.classList.add("locked");
+  sheetClose.focus();
+}
+function shut(){
+  overlay.classList.remove("open");
+  document.body.classList.remove("locked");
+  current=null;
+}
+$$(".js-open").forEach(b=>b.addEventListener("click",()=>open(b.closest(".file"))));
+sheetClose.addEventListener("click",shut);
+overlay.addEventListener("click",e=>{ if(e.target===overlay) shut(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&overlay.classList.contains("open")) shut(); });
+
+/* --- form --- */
+const form=$("#form"), status=$("#status"), sendBtn=form.querySelector(".send");
+form.addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(sendBtn.dataset.state==="busy") return;
+  sendBtn.dataset.state="busy";
+  const label=sendBtn.querySelector("span");
+  const prev=label.textContent;
+  label.textContent=I18N[lang].form_sending;
+  status.textContent=""; status.className="form-status mono";
+  try{
+    const res=await fetch(form.action,{method:"POST",body:new FormData(form),headers:{"Accept":"application/json"}});
+    if(res.ok){
+      form.reset();
+      status.textContent=I18N[lang].form_ok;
+      status.classList.add("ok");
+    }else{
+      throw new Error("bad");
+    }
+  }catch(err){
+    status.textContent=I18N[lang].form_err;
+    status.classList.add("err");
+  }
+  label.textContent=prev;
+  sendBtn.dataset.state="";
+});
+
+/* --- son rötuş --- */
+$("#yr").textContent=new Date().getFullYear();
+applyTheme();
+applyLang();
+})();
+</script>
+</body>
+</html>

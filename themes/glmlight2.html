@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>glmlight2 — Swiss Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7;
+  --card:#FFFFFF;
+  --ink:#101114;
+  --ink-60:#5C5F66;
+  --ink-40:#9A9DA5;
+  --line:#E4E4DE;
+  --line-2:#EEEEEA;
+  --acc:#2545FF;
+  --acc-soft:rgba(37,69,255,.07);
+  --acc-soft-2:rgba(37,69,255,.14);
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
+::selection{background:var(--acc);color:#fff}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.mono{font-family:var(--mono)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:80;background:rgba(250,250,247,.88);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15.5px;letter-spacing:-.01em}
+.logo .sq{width:12px;height:12px;background:var(--acc);flex:none;transition:transform .4s cubic-bezier(.2,.7,.3,1)}
+.logo:hover .sq{transform:rotate(135deg)}
+.logo small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink-40);margin-left:2px}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ink-60);transition:color .22s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--acc);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.avail{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--ink-60);border:1px solid var(--line);background:#fff;border-radius:100px;padding:10px 18px;transition:.28s}
+.avail i{width:7px;height:7px;border-radius:50%;background:#27C47A;box-shadow:0 0 0 3px rgba(39,196,122,.15);font-style:normal}
+.avail:hover{border-color:var(--acc);color:var(--acc)}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger i{display:block;width:16px;height:1.5px;background:var(--ink)}
+
+/* ---------- HERO ---------- */
+.hero{border-bottom:1px solid var(--line)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);
+  padding:clamp(52px,8vw,110px) 0 clamp(44px,6vw,80px);align-items:end}
+.kicker{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-40);margin-bottom:clamp(22px,3vw,34px)}
+.kicker .no{color:var(--acc)}
+.kicker .rule{width:44px;height:1px;background:var(--ink-40)}
+h1{font-size:clamp(42px,7.6vw,104px);font-weight:300;line-height:1.02;letter-spacing:-.045em}
+h1 b{font-weight:600}
+h1 .u{position:relative;color:var(--acc);font-weight:500;white-space:nowrap}
+h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;height:.1em;background:var(--acc-soft-2);
+  z-index:-1}
+.hero-p{margin-top:clamp(24px,3vw,34px);color:var(--ink-60);font-size:clamp(15px,1.3vw,17px);line-height:1.85;max-width:50ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(26px,3.2vw,38px)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;border-radius:100px;
+  padding:15px 28px;transition:.3s cubic-bezier(.2,.7,.3,1)}
+.btn.solid{background:var(--ink);color:#fff}
+.btn.solid:hover{background:var(--acc);transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,69,255,.25)}
+.btn.ghost{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.btn.ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn i{font-style:normal;font-size:15px;transition:transform .3s}
+.btn:hover i{transform:translateX(4px)}
+
+/* hero side — meta card */
+.meta-card{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden;
+  box-shadow:0 18px 44px rgba(20,22,30,.07)}
+.meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-bottom:1px solid var(--line)}
+.meta-card .ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02);
+  transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
+.meta-card:hover .ph img{transform:scale(1.045)}
+.meta-card .ph .tag{position:absolute;top:14px;left:14px;background:#fff;border-radius:100px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 13px;color:var(--ink);
+  display:flex;align-items:center;gap:7px}
+.meta-card .ph .tag i{width:6px;height:6px;border-radius:50%;background:#27C47A;font-style:normal}
+.meta-card .rows{padding:8px 22px 14px}
+.mrow{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line-2);font-size:13.5px}
+.mrow:last-child{border-bottom:0}
+.mrow dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);
+  width:92px;flex:none}
+.mrow dd{color:var(--ink);font-weight:500}
+
+/* ---------- STATS BAR ---------- */
+.stats{border-bottom:1px solid var(--line);background:#fff}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(22px,3vw,34px) 0;border-left:1px solid var(--line);padding-left:clamp(18px,2.6vw,34px)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font-size:clamp(26px,3.4vw,44px);font-weight:300;letter-spacing:-.04em;line-height:1}
+.stat b em{font-style:normal;color:var(--acc)}
+.stat span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-40);margin-top:10px}
+
+/* ---------- SECTION HEAD ---------- */
+.sec{padding-top:clamp(60px,9vw,120px)}
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding-bottom:clamp(22px,3vw,32px);border-bottom:1px solid var(--ink)}
+.shead .l .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.shead .l .lbl::before{content:'';width:26px;height:1px;background:var(--acc)}
+.shead h2{font-size:clamp(32px,5vw,60px);font-weight:300;letter-spacing:-.04em;line-height:1.02}
+.shead h2 b{font-weight:600}
+.shead .r{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-40);padding-bottom:6px}
+
+/* ---------- PROJECTS ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,3vw,36px);
+  padding-top:clamp(30px,4vw,48px)}
+.pcard{border:1px solid var(--line);border-radius:20px;background:var(--card);overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s,border-color .4s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-7px);box-shadow:0 26px 56px rgba(20,22,30,.11);border-color:#D8D8D0}
+.pcard.wide{grid-column:1/-1}
+.pframe{position:relative;border-bottom:1px solid var(--line);background:#fff}
+.pframe .bar{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line-2);
+  font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--ink-40)}
+.pframe .bar .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);flex:none}
+.pframe .bar .u{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pframe .bar .live{margin-left:auto;color:var(--acc);font-weight:500;letter-spacing:.12em;flex:none}
+.pframe iframe,.pframe .poster{width:100%;aspect-ratio:16/9;border:0;display:block;background:#fff}
+.pframe .in{overflow:hidden}
+.pframe .in iframe{transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.pcard:hover .pframe .in iframe{transform:scale(1.03)}
+.poster{position:relative;display:block;width:100%;border:0;padding:0;cursor:pointer;overflow:hidden;background:#fff;
+  aspect-ratio:16/9}
+.poster img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
+  transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.pcard:hover .poster img{transform:scale(1.03)}
+.poster .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(16,17,20,.58);color:#fff;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+  opacity:0;transition:.32s;text-align:center;padding:14px}
+.poster .ov small{font-size:10px;color:rgba(255,255,255,.72)}
+.pcard:hover .poster .ov{opacity:1}
+.poster .blk{position:absolute;top:12px;right:12px;background:rgba(16,17,20,.85);color:#fff;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;padding:6px 11px;border-radius:100px;z-index:2}
+.pbody{padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;flex:1}
+.pbody .top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pbody h3{font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.03em}
+.pbody .yr{font-family:var(--mono);font-size:10.5px;color:var(--ink-40);letter-spacing:.1em;flex:none}
+.pbody p{margin-top:13px;color:var(--ink-60);font-size:14.5px;line-height:1.75}
+.ptech{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.ptech span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-60);
+  background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:6px 12px;transition:.25s}
+.pcard:hover .ptech span{border-color:#D8D8D0;background:#fff}
+.plink{margin-top:auto;padding-top:22px;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+  font-size:14px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px;transition:.28s}
+.plink i{font-style:normal;transition:transform .3s}
+.plink:hover{color:var(--acc);border-color:var(--acc)}
+.plink:hover i{transform:translate(3px,-3px)}
+
+/* ---------- SKILLS ---------- */
+.skills{margin-top:clamp(26px,3.4vw,40px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(30px,5vw,72px)}
+.skl{padding:20px 0;border-bottom:1px solid var(--line)}
+.skl .t{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.skl .t .nm{font-size:15.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:11px}
+.skl .t .nm small{font-family:var(--mono);font-weight:400;font-size:10px;color:var(--ink-40);letter-spacing:.08em}
+.skl .t .pc{font-family:var(--mono);font-size:12px;color:var(--acc)}
+.skl .bar{margin-top:14px;height:3px;background:var(--line-2);border-radius:100px;overflow:hidden}
+.skl .bar i{display:block;height:100%;width:0;border-radius:100px;
+  background:linear-gradient(90deg,var(--acc),#7B93FF);transition:width 1.25s cubic-bezier(.2,.7,.3,1)}
+
+/* ---------- PROCESS — swiss numbered list ---------- */
+.proc{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);padding-top:clamp(40px,6vw,72px);
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px)}
+.proc .l h2{font-size:clamp(28px,4vw,48px);font-weight:300;letter-spacing:-.04em;line-height:1.06}
+.proc .l h2 b{font-weight:600}
+.proc .l p{margin-top:20px;color:var(--ink-60);font-size:15px;line-height:1.8;max-width:38ch}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(14px,2vw,26px);padding:22px 0;
+  border-bottom:1px solid var(--line);transition:padding-left .4s cubic-bezier(.2,.7,.3,1)}
+.step:hover{padding-left:12px}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--acc);padding-top:3px}
+.step h4{font-size:16.5px;font-weight:600;letter-spacing:-.01em}
+.step p{margin-top:8px;color:var(--ink-60);font-size:14px;line-height:1.7;max-width:52ch}
+
+/* ---------- CONTACT ---------- */
+.contact{margin-top:clamp(66px,10vw,130px);background:var(--ink);color:#fff;border-radius:28px;
+  margin-bottom:clamp(66px,10vw,130px);overflow:hidden;position:relative}
+.contact::before{content:'';position:absolute;top:-180px;right:-120px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(37,69,255,.35),transparent 65%);pointer-events:none}
+.contact-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);
+  padding:clamp(44px,6.5vw,90px) clamp(28px,5vw,72px);position:relative}
+.contact .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:#8FA0FF;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.contact .lbl::before{content:'';width:26px;height:1px;background:#8FA0FF}
+.contact h2{font-size:clamp(34px,5.2vw,64px);font-weight:300;letter-spacing:-.045em;line-height:1.04}
+.contact h2 b{font-weight:600;color:#8FA0FF}
+.contact p{margin-top:22px;color:rgba(255,255,255,.66);font-size:15.5px;line-height:1.8;max-width:40ch}
+.contact .mail{display:inline-flex;align-items:center;gap:11px;margin-top:28px;font-family:var(--mono);
+  font-size:14px;color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:14px 24px;transition:.3s}
+.contact .mail:hover{border-color:#8FA0FF;color:#8FA0FF}
+.cform .fg{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16);transition:border-color .3s}
+.cform .fg:focus-within{border-color:#8FA0FF}
+.cform label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.42);margin-bottom:9px;transition:color .3s}
+.cform .fg:focus-within label{color:#8FA0FF}
+.cform input,.cform textarea{width:100%;background:none;border:0;outline:none;color:#fff;
+  font-family:var(--sans);font-size:16px;resize:none}
+.cform input::placeholder,.cform textarea::placeholder{color:rgba(255,255,255,.24)}
+.cform button{margin-top:32px;background:#fff;color:var(--ink);border:0;font-family:var(--sans);font-size:14.5px;
+  font-weight:600;border-radius:100px;padding:17px 36px;cursor:pointer;display:inline-flex;align-items:center;gap:11px;
+  transition:.3s cubic-bezier(.2,.7,.3,1)}
+.cform button:hover{background:#8FA0FF;color:#fff;transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,69,255,.4)}
+.cform button i{font-style:normal;transition:transform .3s}
+.cform button:hover i{transform:translateX(5px)}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-top:32px;padding-bottom:32px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-40)}
+.foot a{transition:color .25s}
+.foot a:hover{color:var(--acc)}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:1000px){
+  .hero-in{grid-template-columns:1fr;align-items:start}
+  .meta-card{max-width:440px}
+  .stats-in{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(odd){border-left:0;padding-left:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line);padding-bottom:22px}
+  .pgrid{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+  .proc{grid-template-columns:1fr}
+  .contact-in{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .nav-links{position:fixed;inset:72px 0 auto;flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:10px var(--gut) 22px;
+    transform:translateY(-10px);opacity:0;pointer-events:none;transition:.28s}
+  .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+  .nav-links a{padding:15px 0;border-bottom:1px solid var(--line-2);width:100%;font-size:15px}
+  .nav-links a::after{display:none}
+  .burger{display:flex}
+}
+@media(max-width:620px){
+  .stats-in{grid-template-columns:1fr}
+  .stat{border-left:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:20px}
+  .stat:last-child{border-bottom:0}
+  .foot{flex-direction:column;align-items:flex-start;gap:9px}
+  .avail span{display:none}
+  .avail{padding:10px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  .skl .bar i{width:var(--w)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="logo"><span class="sq"></span> Kaan Can Güner <small>/ KCG</small></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#projeler">Projeler</a>
+      <a href="#yetenek">Yetenekler</a>
+      <a href="#yontem">Yöntem</a>
+      <a href="#iletisim">İletişim</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="#iletisim" class="avail"><i></i><span>Yeni projeye açık</span></a>
+      <button class="burger" id="burger" aria-label="Menü"><i></i><i></i></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="kicker"><span class="no">01</span><span class="rule"></span> Portfolio — Web Geliştirici, İstanbul</p>
+      <h1>Merhaba, ben <b>Kaan Can</b><br>Güner — modern web<br><span class="u">arayüzleri</span> kuruyorum.</h1>
+      <p class="hero-p">Modern, duyarlı ve akıcı arayüzler tasarlıyorum. Kod altyapısını güvenli ve optimize edilmiş
+        şekilde kuruyorum. Yönetici paneli, veri tabanı entegrasyonu ve SEO optimizasyonu dahil tüm süreçleri
+        tamamlayarak teslim ediyorum. Hazır şablon kullanmıyorum.</p>
+      <div class="hero-cta">
+        <a href="#projeler" class="btn solid">Projeleri Gör <i>→</i></a>
+        <a href="#iletisim" class="btn ghost">İletişime Geç</a>
+      </div>
+    </div>
+    <aside class="meta-card rv">
+      <div class="ph">
+        <span class="tag"><i></i> KCG / 2024</span>
+        <img src="../images/profile.jpg" alt="Kaan Can Güner">
+      </div>
+      <dl class="rows">
+        <div class="mrow"><dt>Rol</dt><dd>Web Geliştirici</dd></div>
+        <div class="mrow"><dt>Odak</dt><dd>Frontend &amp; Full-Stack</dd></div>
+        <div class="mrow"><dt>Konum</dt><dd>İstanbul, TR</dd></div>
+        <div class="mrow"><dt>Motto</dt><dd>“Her projeyi kendi işimmiş gibi yapmak.”</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><b>03<em>+</em></b><span>Tamamlanan Proje</span></div>
+    <div class="stat"><b>06</b><span>Teknoloji Alanı</span></div>
+    <div class="stat"><b>100<em>%</em></b><span>Özel Kod — Şablon Yok</span></div>
+    <div class="stat"><b>TR<em>/</em>EN</b><span>Çift Dil Desteği</span></div>
+  </div>
+</div>
+
+<section class="sec wrap" id="projeler">
+  <div class="shead">
+    <div class="l">
+      <p class="lbl">02 — Seçili İşler</p>
+      <h2>Projeler<b>im</b></h2>
+    </div>
+    <span class="r">2024 → GÜNÜMÜZ · 03 PROJE</span>
+  </div>
+
+  <div class="pgrid">
+    <article class="pcard wide rv">
+      <div class="pframe">
+        <div class="bar"><span class="dot"></span><span class="u">kendisibirmekan.netlify.app</span><span class="live">● CANLI</span></div>
+        <div class="in">
+          <button class="poster" data-live="https://kendisibirmekan.netlify.app/">
+            <span class="blk">iframe engelli — tıkla</span>
+            <img src="../images/project1.webp" alt="Kendisibir Mekan önizleme">
+            <span class="ov">Canlı Önizleme ↗<small>tıkla → gerçek siteyi yükle</small></span>
+          </button>
+        </div>
+      </div>
+      <div class="pbody">
+        <div class="top"><h3>Kendisibir Mekan</h3><span class="yr">01 / 2024</span></div>
+        <p>Üsküdar'daki kitap-kafe-atölye konseptli işletme için modern ve responsive web sitesi. Dinamik menü
+          yönetimi, etkinlik duyuruları, görsel galeri ve güvenli yönetici paneli içerir.</p>
+        <div class="ptech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Supabase</span><span>Node.js</span><span>Netlify</span></div>
+        <a href="https://kendisibirmekan.netlify.app/" target="_blank" class="plink">Projeye Git <i>↗</i></a>
+      </div>
+    </article>
+
+    <article class="pcard rv">
+      <div class="pframe">
+        <div class="bar"><span class="dot"></span><span class="u">cryptoscann.netlify.app</span><span class="live">● CANLI</span></div>
+        <div class="in"><iframe src="https://cryptoscann.netlify.app/" loading="lazy" title="Crypto Scan canlı önizleme"></iframe></div>
+      </div>
+      <div class="pbody">
+        <div class="top"><h3>Crypto Scan</h3><span class="yr">02 / 2024</span></div>
+        <p>RSI ve Stochastic göstergeleri ile 20+ kripto parayı anlık izleyen, sinyal analizi sunan modern
+          trading dashboard'u.</p>
+        <div class="ptech"><span>Tailwind CSS</span><span>JavaScript</span><span>Node.js</span><span>Netlify</span></div>
+        <a href="https://cryptoscann.netlify.app/" target="_blank" class="plink">Projeye Git <i>↗</i></a>
+      </div>
+    </article>
+
+    <article class="pcard rv">
+      <div class="pframe">
+        <div class="bar"><span class="dot"></span><span class="u">kcguner.github.io/simplecvmaker</span><span class="live">● CANLI</span></div>
+        <div class="in"><iframe src="https://kcguner.github.io/simplecvmaker/" loading="lazy" title="Simple CV Maker canlı önizleme"></iframe></div>
+      </div>
+      <div class="pbody">
+        <div class="top"><h3>Simple CV Maker</h3><span class="yr">03 / 2024</span></div>
+        <p>Kişisel bilgilerle anlık önizlemeli, modern özgeçmişler oluşturmayı sağlayan web aracı. PDF çıktı alma
+          ve dinamik içerik yönetimi.</p>
+        <div class="ptech"><span>JavaScript</span><span>DOM</span><span>html2pdf.js</span></div>
+        <a href="https://kcguner.github.io/simplecvmaker/" target="_blank" class="plink">Projeye Git <i>↗</i></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec wrap" id="yetenek">
+  <div class="shead">
+    <div class="l">
+      <p class="lbl">03 — Araçlar</p>
+      <h2>Teknik <b>Yetenekler</b></h2>
+    </div>
+    <span class="r">06 ALAN · SÜREKLİ GELİŞİYOR</span>
+  </div>
+  <div class="skills" id="skillList">
+    <div class="skl"><div class="t"><span class="nm">HTML5 <small>SEMANTİK YAPI</small></span><span class="pc">90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">CSS3 <small>GRID · FLEXBOX</small></span><span class="pc">86%</span></div><div class="bar"><i data-w="86%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">JavaScript <small>ES6+ · DOM</small></span><span class="pc">82%</span></div><div class="bar"><i data-w="82%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">SQL <small>POSTGRESQL</small></span><span class="pc">75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Supabase <small>AUTH · VERİ TABANI</small></span><span class="pc">73%</span></div><div class="bar"><i data-w="73%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Responsive <small>MOBİL ÖNCELIKLİ</small></span><span class="pc">87%</span></div><div class="bar"><i data-w="87%"></i></div></div>
+  </div>
+</section>
+
+<section class="proc wrap" id="yontem">
+  <div class="l rv">
+    <p class="lbl" style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:16px">04 — Yöntem</p>
+    <h2>Şablonsuz,<br><b>uçtan uca</b> çalışma.</h2>
+    <p>Her proje sıfırdan, ihtiyaca göre kurgulanır. Teslim edilen şey yalnızca bir site değil; yönetilebilir,
+      güvenli ve büyüyebilir bir altyapıdır.</p>
+  </div>
+  <div class="steps">
+    <div class="step rv"><span class="n">01</span><div><h4>Keşif &amp; Planlama</h4><p>İhtiyaçların netleştirilmesi, sayfa yapısı ve içerik planının çıkarılması.</p></div></div>
+    <div class="step rv"><span class="n">02</span><div><h4>Tasarım &amp; Geliştirme</h4><p>Modern, duyarlı arayüzün kodlanması; güvenli ve optimize edilmiş altyapı.</p></div></div>
+    <div class="step rv"><span class="n">03</span><div><h4>Entegrasyon</h4><p>Yönetici paneli, veri tabanı (Supabase) ve gerekli servislerin bağlanması.</p></div></div>
+    <div class="step rv"><span class="n">04</span><div><h4>SEO &amp; Teslim</h4><p>Google SEO optimizasyonu, testler ve yayına alma. Sonrasında destek.</p></div></div>
+  </div>
+</section>
+
+<section class="contact wrap" id="iletisim">
+  <div class="contact-in">
+    <div>
+      <p class="lbl">05 — İletişim</p>
+      <h2>Birlikte<br><b>çalışalım.</b></h2>
+      <p>Projeleriniz veya sorularınız için bana ulaşabilirsiniz. Fikir aşamasından teslimata kadar tüm süreçte
+        yanınızdayım.</p>
+      <a class="mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=kcguner@gmail.com" target="_blank">kcguner@gmail.com <i>↗</i></a>
+    </div>
+    <form class="cform" onsubmit="return false">
+      <div class="fg"><label>Adınız</label><input type="text" placeholder="Ad Soyad"></div>
+      <div class="fg"><label>E-posta</label><input type="email" placeholder="ornek@mail.com"></div>
+      <div class="fg"><label>Mesajınız</label><textarea rows="4" placeholder="Birkaç cümle yeter."></textarea></div>
+      <button type="submit">Gönder <i>→</i></button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2024 KAAN CAN GÜNER</span>
+    <span><a href="https://github.com/Kcguner" target="_blank">GITHUB ↗</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/kaancang1" target="_blank">INSTAGRAM ↗</a></span>
+    <span>DESIGNED &amp; BUILT BY ME</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var bl=document.getElementById('burger'),nl=document.getElementById('navLinks');
+  bl.addEventListener('click',function(){nl.classList.toggle('open')});
+  nl.addEventListener('click',function(e){if(e.target.tagName==='A')nl.classList.remove('open')});
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
+
+  var sio=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.bar i').forEach(function(b,i){setTimeout(function(){b.style.width=b.dataset.w},i*90)});
+        sio.unobserve(e.target);
+      }
+    });
+  },{threshold:.2});
+  var sl=document.getElementById('skillList');if(sl)sio.observe(sl);
+
+  // güvenlik ağı: JS gecikirse içerik gizli kalmasın
+  setTimeout(function(){
+    document.querySelectorAll('.rv').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<innerHeight*1.2){el.classList.add('in');io.unobserve(el)}
+    });
+  },400);
+
+  document.querySelectorAll('.poster[data-live]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=document.createElement('iframe');
+      f.src=b.dataset.live;f.loading='lazy';f.title='Canlı önizleme';
+      f.style.cssText='width:100%;aspect-ratio:16/9;border:0;display:block;background:#fff';
+      b.replaceWith(f);
+    });
+  });
+})();
+</script>
+</body>
+</html>
