@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kaan Can Güner — Geliştirici / Vibe Coder</title>
+<meta name="description" content="Kaan Can Güner — Geliştirici / Vibe Coder. Web siteleri ve masaüstü uygulamalar: şablonsuz, sıfırdan, uçtan uca teslim.">
+<meta property="og:title" content="Kaan Can Güner — Geliştirici / Vibe Coder">
+<meta property="og:description" content="Kaan Can Güner — Geliştirici / Vibe Coder. Web siteleri ve masaüstü uygulamalar: şablonsuz, sıfırdan, uçtan uca teslim.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232545FF'/%3E%3Ctext x='32' y='46' font-family='Arial,Helvetica,sans-serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23FFFFFF'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,8 +28,19 @@
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --gut:clamp(20px,5vw,72px);
 }
+[data-theme="dark"]{
+  --bg:#101114;--card:#17181C;--ink:#F2F1EC;--ink-60:#A7A9B0;--ink-40:#6E7078;
+  --line:#2A2B30;--line-2:#202126;--acc:#7B93FF;--acc-soft:rgba(123,147,255,.12);--acc-soft-2:rgba(123,147,255,.22);
+}
+[data-theme="dark"] nav{background:rgba(16,17,20,.85)}
+[data-theme="dark"] .stats{background:#17181C}
+[data-theme="dark"] .avail,[data-theme="dark"] .btn.ghost,[data-theme="dark"] .burger,[data-theme="dark"] .theme-btn{background:var(--card)}
+[data-theme="dark"] .btn.solid{background:var(--acc);color:#fff}
+[data-theme="dark"] .contact{background:#17181C}
+[data-theme="dark"] .meta-card{box-shadow:0 18px 44px rgba(0,0,0,.45)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+section[id]{scroll-margin-top:96px}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
 ::selection{background:var(--acc);color:#fff}
@@ -50,18 +66,21 @@ nav{position:sticky;top:0;z-index:80;background:rgba(250,250,247,.88);backdrop-f
   color:var(--ink-60);border:1px solid var(--line);background:#fff;border-radius:100px;padding:10px 18px;transition:.28s}
 .avail i{width:7px;height:7px;border-radius:50%;background:#27C47A;box-shadow:0 0 0 3px rgba(39,196,122,.15);font-style:normal}
 .avail:hover{border-color:var(--acc);color:var(--acc)}
-.burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;
+.theme-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--ink-60);border:1px solid var(--line);background:#fff;border-radius:100px;padding:10px 16px;cursor:pointer;transition:.28s}
+.theme-btn:hover{border-color:var(--acc);color:var(--acc)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;
   align-items:center;justify-content:center;flex-direction:column;gap:5px}
 .burger i{display:block;width:16px;height:1.5px;background:var(--ink)}
 
 /* ---------- HERO ---------- */
 .hero{border-bottom:1px solid var(--line)}
 .hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);
-  padding:clamp(28px,4vw,56px) 0 clamp(44px,6vw,80px);align-items:end}
+  padding:clamp(28px,4vw,56px) 0 clamp(44px,6vw,80px);align-items:center}
 .kicker{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--ink-40);margin-bottom:clamp(22px,3vw,34px)}
 .kicker .no{color:var(--acc)}
-.kicker .rule{width:44px;height:1px;background:var(--ink-40)}
+.kicker .rule{width:44px;height:1px;background:var(--ink-40);flex:none}
 h1{font-size:clamp(42px,7.6vw,104px);font-weight:300;line-height:1.02;letter-spacing:-.045em;text-wrap:balance}
 h1 b{font-weight:600}
 h1 .u{position:relative;color:var(--acc);font-weight:500;white-space:nowrap}
@@ -79,13 +98,13 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .btn:hover i{transform:translateX(4px)}
 
 /* hero side — meta card */
-.meta-card{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden;
+.meta-card{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden;align-self:start;
   box-shadow:0 18px 44px rgba(20,22,30,.07)}
 .meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;margin:20px 20px 0}
 .meta-card .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);filter:saturate(.92) contrast(1.02);
   transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
 .meta-card:hover .ph img{transform:scale(1.11)}
-.meta-card .ph .tag{position:absolute;top:14px;left:14px;background:#fff;border-radius:100px;
+.meta-card .ph .tag{position:absolute;top:auto;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:100px;
   font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 13px;color:var(--ink);
   display:flex;align-items:center;gap:7px}
 .meta-card .ph .tag i{width:6px;height:6px;border-radius:50%;background:#27C47A;font-style:normal}
@@ -147,10 +166,11 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .poster .blk{position:absolute;top:12px;right:12px;background:rgba(16,17,20,.85);color:#fff;
   font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;padding:6px 11px;border-radius:100px;z-index:2}
 .pbody{padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;flex:1}
-.pbody .top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pbody .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .pbody h3{font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.03em}
 .pbody .yr{font-family:var(--mono);font-size:10.5px;color:var(--ink-40);letter-spacing:.1em;flex:none}
 .pbody p{margin-top:13px;color:var(--ink-60);font-size:14.5px;line-height:1.75}
+.pbody .result{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc)}
 .ptech{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
 .ptech span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-60);
   background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:6px 12px;transition:.25s}
@@ -176,8 +196,8 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
   column-gap:clamp(30px,5vw,72px)}
 .skl{padding:20px 0;border-bottom:1px solid var(--line)}
 .skl .t{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.skl .t .nm{font-size:15.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:11px}
-.skl .t .nm small{font-family:var(--mono);font-weight:400;font-size:10px;color:var(--ink-40);letter-spacing:.08em}
+.skl .t .nm{font-size:15.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:11px;min-width:0}
+.skl .t .nm small{font-family:var(--mono);font-weight:400;font-size:10px;color:var(--ink-40);letter-spacing:.08em;overflow-wrap:anywhere}
 .skl .t .pc{font-family:var(--mono);font-size:12px;color:var(--acc)}
 .skl .bar{margin-top:14px;height:3px;background:var(--line-2);border-radius:100px;overflow:hidden}
 .skl .bar i{display:block;height:100%;width:0;border-radius:100px;
@@ -234,7 +254,7 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 footer{border-top:1px solid var(--line)}
 .foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
   padding-top:32px;padding-bottom:32px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-40)}
-.foot a{transition:color .25s}
+.foot a{display:inline-block;padding:6px 0;transition:color .25s}
 .foot a:hover{color:var(--acc)}
 
 /* ---------- REVEAL ---------- */
@@ -243,10 +263,11 @@ footer{border-top:1px solid var(--line)}
 
 @media(max-width:1000px){
   .hero-in{grid-template-columns:1fr;align-items:start}
-  .meta-card{max-width:440px}
+  .meta-card{max-width:440px;margin-inline:auto}
   .stats-in{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(odd){border-left:0;padding-left:0}
-  .stat:nth-child(-n+2){border-bottom:1px solid var(--line);padding-bottom:22px}
+  .stat{padding-bottom:22px}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .pgrid{grid-template-columns:1fr}
   .skills{grid-template-columns:1fr}
   .proc{grid-template-columns:1fr}
@@ -266,14 +287,21 @@ footer{border-top:1px solid var(--line)}
   .stat{border-left:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:20px}
   .stat:last-child{border-bottom:0}
   .foot{flex-direction:column;align-items:flex-start;gap:9px}
+  .logo small{display:none}
   .avail span{display:none}
   .avail{padding:10px 13px}
+}
+@media(max-width:620px){.plink{padding:10px 0}}
+@media(max-width:400px){
+  .logo{font-size:14px}
+  .contact .mail{font-size:12.5px;padding:13px 18px;overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
   .rv{opacity:1;transform:none}
   .skl .bar i{width:var(--w)}
 }
+@media (hover:none){.poster .ov{opacity:1}}
 </style>
 </head>
 <body>
@@ -289,6 +317,7 @@ footer{border-top:1px solid var(--line)}
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <a href="#iletisim" class="avail"><i></i><span>Yeni projeye açık</span></a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Tema" title="Tema">◐ Tema</button>
       <button class="burger" id="burger" aria-label="Menü"><i></i><i></i></button>
     </div>
   </div>
@@ -314,7 +343,7 @@ footer{border-top:1px solid var(--line)}
         <div class="mrow"><dt>Rol</dt><dd>Geliştirici / Vibe Coder</dd></div>
         <div class="mrow"><dt>Odak</dt><dd>Web &amp; Masaüstü</dd></div>
         <div class="mrow"><dt>Konum</dt><dd>İstanbul, TR</dd></div>
-        <div class="mrow"><dt>Motto</dt><dd>“Her projeyi kendi işimmiş gibi yapmak.”</dd></div>
+        <div class="mrow"><dt>Motto</dt><dd>“Temiz kod, çalışan ürün — başkasına vermeyeceğimi teslim etmem.”</dd></div>
       </dl>
     </aside>
   </div>
@@ -323,7 +352,7 @@ footer{border-top:1px solid var(--line)}
 <div class="stats">
   <div class="wrap stats-in">
     <div class="stat"><b>03</b><span>Canlı Proje</span></div>
-    <div class="stat"><b>06</b><span>Teknoloji Alanı</span></div>
+    <div class="stat"><b>11</b><span>Teknoloji Alanı</span></div>
     <div class="stat"><b>100<em>%</em></b><span>Özel Kod — Şablon Yok</span></div>
     <div class="stat"><b>TR<em>/</em>EN</b><span>Çift Dil Desteği</span></div>
   </div>
@@ -335,7 +364,7 @@ footer{border-top:1px solid var(--line)}
       <p class="lbl">02 — Seçili İşler</p>
       <h2>Projeler<b>im</b></h2>
     </div>
-    <span class="r">06 DEPO · SEÇİLİ İŞLER</span>
+    <span class="r">07 DEPO · SEÇİLİ İŞLER</span>
   </div>
 
   <div class="pgrid">
@@ -353,10 +382,33 @@ footer{border-top:1px solid var(--line)}
       <div class="pbody">
         <div class="top"><span class="ttlwrap"><h3>truereviews</h3></span><span class="yr">01</span></div>
         <p>Google Maps yorumlarını okuyup 10 dilde tek sayfalık özet çıkaran ücretsiz araç.</p>
+        <p class="result">→ Ziyaretçiyi e-posta abonesine çeviren ücretsiz araç.</p>
         <div class="ptech"><span>Next.js 14</span><span>TypeScript</span><span>Apify</span><span>Gemini</span><span>Redis</span><span>Vercel</span></div>
         <div class="plinks">
           <a href="https://get-truereviews.vercel.app" target="_blank" class="plink">Canlı Site <i>↗</i></a>
           <a href="https://github.com/Kcguner/truereviews" target="_blank" class="plink">GitHub <i>↗</i></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pcard rv">
+      <div class="pframe">
+        <div class="bar"><span class="dot"></span><span class="u">tweetalgo.com</span><span class="live">● CANLI</span></div>
+        <div class="in">
+          <a class="poster" href="https://tweetalgo.com/" target="_blank" rel="noopener" aria-label="tweetalgo canlı siteyi yeni sekmede aç">
+            <span class="blk">Canlı site — yeni sekmede aç</span>
+            <span class="mock"><span class="m">tweetalgo</span><span class="s">tweetalgo.com</span></span>
+            <span class="ov">Canlı Site ↗<small>yeni sekmede açılır · gömülü önizleme kapalı</small></span>
+          </a>
+        </div>
+      </div>
+      <div class="pbody">
+        <div class="top"><span class="ttlwrap"><h3>tweetalgo</h3></span><span class="yr">02</span></div>
+        <p>X (Twitter) tweet'lerini paylaşmadan önce viral skor, spam riski, dwell time ve erişim tahmini ile analiz eden ücretsiz yapay zeka algoritma aracı.</p>
+        <p class="result">→ Paylaşmadan önce viral skoru ve spam riskini gösteriyor.</p>
+        <div class="ptech"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Tailwind CSS 4</span><span>Gemini</span><span>Groq</span></div>
+        <div class="plinks">
+          <a href="https://tweetalgo.com/" target="_blank" class="plink">Canlı Site <i>↗</i></a>
         </div>
       </div>
     </article>
@@ -373,8 +425,9 @@ footer{border-top:1px solid var(--line)}
         </div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>git-to-portfolio</h3></span><span class="yr">02</span></div>
+        <div class="top"><span class="ttlwrap"><h3>git-to-portfolio</h3></span><span class="yr">03</span></div>
         <p>Public GitHub profilini kayıtsız veritabanısız paylaşılabilir yazdırılabilir portfolyoya çevirir.</p>
+        <p class="result">→ GitHub profilini tek tıkla paylaşılabilir portfolyoya çeviriyor.</p>
         <div class="ptech"><span>Next.js 16</span><span>TypeScript</span><span>Node 20</span><span>Vercel</span><span>CI</span></div>
         <div class="plinks">
           <a href="https://git-to-portfolio.vercel.app" target="_blank" class="plink">Canlı Site <i>↗</i></a>
@@ -388,8 +441,9 @@ footer{border-top:1px solid var(--line)}
         <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/ai-watermark-cleaner</span><span class="live">REPO</span></div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>ai-watermark-cleaner</h3></span><span class="yr">03</span></div>
+        <div class="top"><span class="ttlwrap"><h3>ai-watermark-cleaner</h3></span><span class="yr">04</span></div>
         <p>PNG JPG PDF PPTX filigranlarını cihaz üzerinde localhost temizleyen gizlilik odaklı araç.</p>
+        <p class="result">→ Dosyalar cihazdan çıkmadan temizleniyor.</p>
         <div class="ptech"><span>Python</span><span>Flask</span><span>OpenCV</span><span>Pillow</span></div>
         <div class="plinks">
           <a href="https://github.com/Kcguner/ai-watermark-cleaner" target="_blank" class="plink">GitHub <i>↗</i></a>
@@ -402,8 +456,9 @@ footer{border-top:1px solid var(--line)}
         <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/pdf-splitter</span><span class="live">REPO</span></div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>pdf-splitter</h3></span><span class="yr">04</span></div>
+        <div class="top"><span class="ttlwrap"><h3>pdf-splitter</h3></span><span class="yr">05</span></div>
         <p>PDF tek tıkla sayfa sayfa aralık birleştirme sürükle-bırak masaüstü uygulaması.</p>
+        <p class="result">→ Toplu PDF işini tek tıkla bitiriyor.</p>
         <div class="ptech"><span>Python</span><span>CustomTkinter</span><span>pypdf</span><span>PyMuPDF</span></div>
         <div class="plinks">
           <a href="https://github.com/Kcguner/pdf-splitter" target="_blank" class="plink">GitHub <i>↗</i></a>
@@ -416,8 +471,9 @@ footer{border-top:1px solid var(--line)}
         <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/edge-tts-gui</span><span class="live">REPO</span></div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>edge-tts-gui</h3><span class="fork">FORK</span></span><span class="yr">05</span></div>
+        <div class="top"><span class="ttlwrap"><h3>edge-tts-gui</h3><span class="fork">FORK</span></span><span class="yr">06</span></div>
         <p>Edge TTS ile 300+ ses doğal seslendirme MP3 kayıt masaüstü uygulaması.</p>
+        <p class="result">→ 300+ sesle ücretsiz seslendirme.</p>
         <div class="ptech"><span>Python</span><span>Edge TTS</span><span>Desktop GUI</span></div>
         <div class="plinks">
           <a href="https://github.com/Kcguner/edge-tts-gui" target="_blank" class="plink">GitHub <i>↗</i></a>
@@ -430,8 +486,9 @@ footer{border-top:1px solid var(--line)}
         <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/llmfit</span><span class="live">REPO</span></div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>llmfit</h3><span class="fork">FORK</span></span><span class="yr">06</span></div>
+        <div class="top"><span class="ttlwrap"><h3>llmfit</h3><span class="fork">FORK</span></span><span class="yr">07</span></div>
         <p>LLM donanım boyutlandırma aracının çapraz platform masaüstü sürümü.</p>
+        <p class="result">→ Donanımına uygun modeli seçmene yardım ediyor.</p>
         <div class="ptech"><span>Rust</span><span>Desktop</span><span>CI/CD</span></div>
         <div class="plinks">
           <a href="https://github.com/Kcguner/llmfit" target="_blank" class="plink">GitHub <i>↗</i></a>
@@ -447,15 +504,20 @@ footer{border-top:1px solid var(--line)}
       <p class="lbl">03 — Araçlar</p>
       <h2>Teknik <b>Yetenekler</b></h2>
     </div>
-    <span class="r">06 ALAN · SÜREKLİ GELİŞİYOR</span>
+    <span class="r">11 ALAN · SÜREKLİ GELİŞİYOR</span>
   </div>
   <div class="skills" id="skillList">
-    <div class="skl"><div class="t"><span class="nm">HTML5 <small>SEMANTİK YAPI</small></span><span class="pc">90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
-    <div class="skl"><div class="t"><span class="nm">CSS3 <small>GRID · FLEXBOX</small></span><span class="pc">86%</span></div><div class="bar"><i data-w="86%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">HTML5 <small>SEMANTİK YAPI</small></span><span class="pc">99%</span></div><div class="bar"><i data-w="99%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">CSS3 <small>GRID · FLEXBOX</small></span><span class="pc">95%</span></div><div class="bar"><i data-w="95%"></i></div></div>
     <div class="skl"><div class="t"><span class="nm">JavaScript <small>ES6+ · DOM</small></span><span class="pc">82%</span></div><div class="bar"><i data-w="82%"></i></div></div>
     <div class="skl"><div class="t"><span class="nm">SQL <small>POSTGRESQL</small></span><span class="pc">75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
     <div class="skl"><div class="t"><span class="nm">Supabase <small>AUTH · VERİ TABANI</small></span><span class="pc">73%</span></div><div class="bar"><i data-w="73%"></i></div></div>
-    <div class="skl"><div class="t"><span class="nm">Responsive <small>MOBİL ÖNCELİKLİ</small></span><span class="pc">87%</span></div><div class="bar"><i data-w="87%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Responsive <small>MOBİL ÖNCELİKLİ</small></span><span class="pc">96%</span></div><div class="bar"><i data-w="96%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">TypeScript <small>REACT EKOSİSTEMİ</small></span><span class="pc">80%</span></div><div class="bar"><i data-w="80%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Python <small>MASAÜSTÜ ARAÇLAR</small></span><span class="pc">78%</span></div><div class="bar"><i data-w="78%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Next.js / React <small>FULL-STACK WEB</small></span><span class="pc">82%</span></div><div class="bar"><i data-w="82%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">Tailwind CSS <small>HIZLI ARAYÜZ</small></span><span class="pc">85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
+    <div class="skl"><div class="t"><span class="nm">AI API Entegrasyonu <small>GEMINI · GROQ</small></span><span class="pc">75%</span></div><div class="bar"><i data-w="75%"></i></div></div>
   </div>
 </section>
 
@@ -534,6 +596,17 @@ footer{border-top:1px solid var(--line)}
       f.style.cssText='width:100%;aspect-ratio:16/9;border:0;display:block;background:#fff';
       b.replaceWith(f);
     });
+  });
+
+  // tema değiştirici
+  var tb=document.getElementById('themeBtn');
+  var saved=null;try{saved=localStorage.getItem('site-theme')}catch(e){}
+  var theme=saved||((window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+  document.documentElement.dataset.theme=theme;
+  if(tb)tb.addEventListener('click',function(){
+    theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
+    document.documentElement.dataset.theme=theme;
+    try{localStorage.setItem('site-theme',theme)}catch(e){}
   });
 })();
 </script>
