@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaan Can Güner — Web Geliştirici</title>
+<title>Kaan Can Güner — Geliştirici / Vibe Coder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@ nav{position:sticky;top:0;z-index:80;background:rgba(250,250,247,.88);backdrop-f
 /* ---------- HERO ---------- */
 .hero{border-bottom:1px solid var(--line)}
 .hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);
-  padding:clamp(52px,8vw,110px) 0 clamp(44px,6vw,80px);align-items:end}
+  padding:clamp(28px,4vw,56px) 0 clamp(44px,6vw,80px);align-items:end}
 .kicker{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--ink-40);margin-bottom:clamp(22px,3vw,34px)}
 .kicker .no{color:var(--acc)}
@@ -81,10 +81,10 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 /* hero side — meta card */
 .meta-card{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden;
   box-shadow:0 18px 44px rgba(20,22,30,.07)}
-.meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-bottom:1px solid var(--line)}
-.meta-card .ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02);
+.meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;margin:20px 20px 0}
+.meta-card .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);filter:saturate(.92) contrast(1.02);
   transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
-.meta-card:hover .ph img{transform:scale(1.045)}
+.meta-card:hover .ph img{transform:scale(1.11)}
 .meta-card .ph .tag{position:absolute;top:14px;left:14px;background:#fff;border-radius:100px;
   font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 13px;color:var(--ink);
   display:flex;align-items:center;gap:7px}
@@ -227,6 +227,8 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .cform button:hover{background:#8FA0FF;color:#fff;transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,69,255,.4)}
 .cform button i{font-style:normal;transition:transform .3s}
 .cform button:hover i{transform:translateX(5px)}
+.cform.chan{display:flex;flex-direction:column;gap:14px;align-items:stretch}
+.cform.chan .mail{margin-top:0;justify-content:space-between}
 
 /* ---------- FOOTER ---------- */
 footer{border-top:1px solid var(--line)}
@@ -295,9 +297,9 @@ footer{border-top:1px solid var(--line)}
 <section class="hero">
   <div class="wrap hero-in">
     <div>
-      <p class="kicker"><span class="no">01</span><span class="rule"></span> Portfolio — Web Geliştirici, İstanbul</p>
-      <h1>Merhaba, ben <b>Kaan Can Güner</b> — modern web <span class="u">arayüzleri</span> kuruyorum.</h1>
-      <p class="hero-p">Duyarlı ve akıcı arayüzler kuruyor, altyapıyı güvenli ve hızlı olacak şekilde kurguluyorum. Yönetici paneli, veri tabanı entegrasyonu ve SEO dahil süreci uçtan uca tamamlayıp teslim ediyorum. Hazır şablon kullanmıyorum; her proje ihtiyaca göre sıfırdan yazılıyor.</p>
+      <p class="kicker"><span class="no">01</span><span class="rule"></span> Portfolio — Geliştirici / Vibe Coder, İstanbul</p>
+      <h1>Merhaba, ben <b>Kaan Can Güner</b> — modern yazılım <span class="u">çözümleri</span> kuruyorum.</h1>
+      <p class="hero-p">Web'den masaüstüne: arayüzü akıcı, altyapısı güvenli ürünler. Şablonsuz, sıfırdan, uçtan uca teslim.</p>
       <div class="hero-cta">
         <a href="#projeler" class="btn solid">Projeleri Gör <i>→</i></a>
         <a href="#iletisim" class="btn ghost">İletişime Geç</a>
@@ -309,8 +311,8 @@ footer{border-top:1px solid var(--line)}
         <img src="images/profile.jpg" alt="Kaan Can Güner">
       </div>
       <dl class="rows">
-        <div class="mrow"><dt>Rol</dt><dd>Web Geliştirici</dd></div>
-        <div class="mrow"><dt>Odak</dt><dd>Frontend &amp; Full-Stack</dd></div>
+        <div class="mrow"><dt>Rol</dt><dd>Geliştirici / Vibe Coder</dd></div>
+        <div class="mrow"><dt>Odak</dt><dd>Web &amp; Masaüstü</dd></div>
         <div class="mrow"><dt>Konum</dt><dd>İstanbul, TR</dd></div>
         <div class="mrow"><dt>Motto</dt><dd>“Her projeyi kendi işimmiş gibi yapmak.”</dd></div>
       </dl>
@@ -337,7 +339,7 @@ footer{border-top:1px solid var(--line)}
   </div>
 
   <div class="pgrid">
-    <article class="pcard wide rv">
+    <article class="pcard rv">
       <div class="pframe">
         <div class="bar"><span class="dot"></span><span class="u">get-truereviews.vercel.app</span><span class="live">● CANLI</span></div>
         <div class="in">
@@ -461,14 +463,13 @@ footer{border-top:1px solid var(--line)}
   <div class="l rv">
     <p class="lbl" style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:16px">04 — Yöntem</p>
     <h2>Şablonsuz,<br><b>uçtan uca</b> çalışma.</h2>
-    <p>Her proje sıfırdan, ihtiyaca göre kurgulanır. Teslim edilen şey yalnızca bir site değil; yönetilebilir,
-      güvenli ve büyüyebilir bir altyapıdır.</p>
+    <p>Her proje sıfırdan, ihtiyaca göre kurgulanır. Teslim edilen şey yalnızca bir ekran değil; yönetilebilir, güvenli ve büyüyebilir bir üründür.</p>
   </div>
   <div class="steps">
-    <div class="step rv"><span class="n">01</span><div><h4>Keşif &amp; Planlama</h4><p>İhtiyaçların netleştirilmesi, sayfa yapısı ve içerik planının çıkarılması.</p></div></div>
+    <div class="step rv"><span class="n">01</span><div><h4>Keşif &amp; Planlama</h4><p>İhtiyaçların netleştirilmesi, ürün yapısı ve içerik planının çıkarılması.</p></div></div>
     <div class="step rv"><span class="n">02</span><div><h4>Tasarım &amp; Geliştirme</h4><p>Modern, duyarlı arayüzün kodlanması; güvenli ve optimize edilmiş altyapı.</p></div></div>
     <div class="step rv"><span class="n">03</span><div><h4>Entegrasyon</h4><p>Yönetici paneli, veri tabanı (Supabase) ve gerekli servislerin bağlanması.</p></div></div>
-    <div class="step rv"><span class="n">04</span><div><h4>SEO &amp; Teslim</h4><p>Google SEO optimizasyonu, testler ve yayına alma. Sonrasında destek.</p></div></div>
+    <div class="step rv"><span class="n">04</span><div><h4>Test &amp; Teslim</h4><p>Testler, paketleme ve yayına alma. Sonrasında destek.</p></div></div>
   </div>
 </section>
 
@@ -479,14 +480,13 @@ footer{border-top:1px solid var(--line)}
       <h2>Birlikte <b>çalışalım.</b></h2>
       <p>Projeleriniz veya sorularınız için bana ulaşabilirsiniz. Fikir aşamasından teslimata kadar tüm süreçte
         yanınızdayım.</p>
-      <a class="mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=kcguner@gmail.com" target="_blank">kcguner@gmail.com <i>↗</i></a>
     </div>
-    <form class="cform" action="https://formspree.io/f/mregqddg" method="post">
-      <div class="fg"><label for="ad">Adınız</label><input id="ad" name="ad" type="text" placeholder="Ad Soyad"></div>
-      <div class="fg"><label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" placeholder="ornek@mail.com"></div>
-      <div class="fg"><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" rows="4" placeholder="Birkaç cümle yeter."></textarea></div>
-      <button type="submit">Gönder <i>→</i></button>
-    </form>
+    <div class="cform chan">
+      <a class="mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=kcguner@gmail.com" target="_blank">kcguner@gmail.com <i>↗</i></a>
+      <a class="mail" href="https://github.com/Kcguner" target="_blank">GitHub — Kcguner <i>↗</i></a>
+      <a class="mail" href="https://www.instagram.com/kaancang1/" target="_blank">Instagram — @kaancang1 <i>↗</i></a>
+      <a class="mail" href="https://x.com/Kaancang1" target="_blank">X — @Kaancang1 <i>↗</i></a>
+    </div>
   </div>
 </section>
 
