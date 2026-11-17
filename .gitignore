@@ -1,0 +1,7 @@
+.DS_Store
+.agents/
+scrollcraft/
+.claude/
+agent/
+skills-lock.json
+index-scrollcraft.html

@@ -1,0 +1,16 @@
+# Ledger
+
+- 2026-11-18 | site-audit | skills CLI install (Kcguner/web-brief2launch) | [SKILLS_SKILL_SKIPPED] YAML parse error: Nested mappings are not allowed in compact mappings at line 2, column 14 — skills/site-audit/SKILL.md | description tırnağa alınmalı; fallback: raw.githubusercontent.com üzerinden SKILL.md çekilip manuel uygulandı
+- 2026-11-18 | site-audit | fetch shared/ledger-rule.md (main/shared/) | 404: Not Found | doğru yol: skills/shared/ledger-rule.md
+- 2026-11-18 | site-audit | SEO audit --url https://kcguner.github.io/profile/ | 10 errors, 2 warnings: canonical-missing, og-missing (image,url), twitter-missing (card,title,description,image), robots-not-200, sitemap-not-200, sitemap-empty | GH Pages kökünde robots/sitemap yok; head meta paketi eksik
+- 2026-11-18 | site-audit | dış link taraması | https://github.com/Kcguner/truereviews -> 404 | kart linki kırık; repo adı/görünürlüğü doğrulanmalı
+- 2026-11-18 | site-audit | konsol, header, 404, kontrast, canlı/yerel eşitlik kontrolleri | no failures | — | —
+- 2026-11-18 | karar | kullanıcı onayları (AskUserQuestion) | no failures | — | Şimdi düzelt; truereviews GitHub linki kaldır; EN dil desteği ekle; ölü/kopya 27 dosya sil ("Evet, bu listeyi sil"); AI crawler İZİN VER; analitik YOK
+- 2026-11-18 | stage 9 | index.html TR düzeltmeleri (meta paketi, hreflang, JSON-LD, skip-link, aria-expanded, kontrast token, opacity-only reveal, h3, ölü CSS/JS, reduced-motion, noopener, WebP+boyut) | no failures | — | reveal transform→opacity CLS'i düşürür; JS-off görünürlük için .js gating
+- 2026-11-18 | stage 10 | en/index.html üretimi (make-en.mjs, counted replacement) + TR/EN karşılıklı hreflang | no failures | — | EN yolları ../ öneki gerektirir (images/assets); lang/og:locale/JSON-LD inLanguage=en
+- 2026-11-18 | stage 11 | robots.txt / sitemap.xml / 404.html / og-card.png / gizlilik+privacy | no failures | — | AI ALLOW kararı robots'a yorumla işlendi; 404 noindex kasıtlı (seo-report'ta gerekçe)
+- 2026-11-18 | stage 12 | 27 ölü/kopya dosya silme | ilk rm permission classifier tarafından engellendi | "preparatory choice to delete does not carry forward" | tam dosya listesiyle açık kullanıcı onayı alındıktan sonra rm başarılı
+- 2026-11-18 | stage 13 | Lighthouse mobile 3 koşu (71→88→98); CLS 0.225 kaynağı "Web font loaded" | no failures (gate öncesi) | — | font self-host + font-display:block + preload → CLS 0.033, third-party=[]; transform reveal tek başına yetmedi
+- 2026-11-18 | stage 13 | Playwright testleri (konsol, overflow 360/390/768/1280, skip-link, reduced-motion, tema, dil, JS-off, 404) | reduced-motion .rv opacity 0 (inline transitionDelay) | transition-delay:0ms!important eklendi → opacity 1 | skip-link testi tema butonu focus artifact'ı verdi; fresh load ile .skip doğrulandı
+- 2026-11-18 | stage 14 | docs suite + README rewrite + quality gate | no failures | — | gate verdict FAIL: manual-required + deploy onayı bekliyor; README merge kalıntısı giderildi
+- 2026-11-18 | deploy | kullanıcı deploy onayı (AskUserQuestion) | no failures | — | "Evet, push et" — origin/main'e push yetkisi; scratch (.claude/agent/skills-lock/index-scrollcraft) hariç, .gitignore'a eklendi

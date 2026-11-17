@@ -1,103 +1,63 @@
 <div align="center">
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="100%" height="200" style="object-fit:cover; border-radius: 10px;" />
-  
-  <br/>
-  
-  <h1>✨ Personal Portfolio Website</h1>
-  <h3>
-    LIVE: https://kcguner.github.io/profile/
-  </h3>
-  
-  <p>
-    <strong>Modern, Şık ve Etkileşimli Kişisel Web Sitesi</strong> <br>
-    <em>Modern, Stylish and Interactive Personal Website</em>
-  </p>
-
-  <p>
-    <a href="#-türkçe">🇹🇷 Türkçe</a> •
-    <a href="#-english">🇬🇧 English</a>
-  </p>
+  <h1>✨ Kaan Can Güner — Personal Portfolio</h1>
+  <h3>LIVE: https://kcguner.github.io/profile/</h3>
+  <p><strong>Şablonsuz, sıfırdan, uçtan uca teslim.</strong><br><em>No templates, from scratch, end-to-end delivery.</em></p>
+  <p><a href="#-türkçe">🇹🇷 Türkçe</a> • <a href="#-english">🇬🇧 English</a></p>
 
   ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
   ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
-=======
- </div>
+  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+</div>
 
 ---
 
-<h2 id="-türkçe">🇹🇷 Türkçe</h2>
+<h2 id="-türkçe">🇹 Türkçe</h2>
 
 ### 🚀 Proje Hakkında
+Statik, bağımlılıksız kişisel portföy. Tek dosya HTML + inline CSS/JS, build adımı yok; GitHub Pages'te yayınlanır. Swiss-minimal tasarım, dark/light tema, tam responsive ve WCAG AA kontrast.
 
-Bu proje, modern web teknolojileri (HTML5, CSS3, Vanilla JS) kullanılarak geliştirilmiş, tamamen duyarlı (responsive) ve performansı optimize edilmiş kişisel bir portföy web sitesidir. 
+### ⭐ Özellikler
+* **🌐 Çift dil:** TR (`/`) + EN (`/en/`), karşılıklı `hreflang` ve nav dil değiştirici.
+* **🎨 Tema:** dark/light, `localStorage` tercihi + sistem uyumu.
+* **♿ Erişilebilirlik:** skip-link, `aria-expanded`, reduced-motion, JS-off'ta görünür içerik.
+* **⚡ Performans:** self-host variable font (CLS-free), WebP görsel, opacity-only reveal. Lighthouse mobile ~98.
+* **🔍 SEO:** canonical, Open Graph, Twitter Card, JSON-LD (Person/ProfilePage), robots.txt + sitemap.xml.
+* **📬 İletişim:** form yok; e-posta / GitHub / Instagram / X kanal linkleri.
+* **⚖️ Hukuk:** KVKK/GDPR aydınlatma (`gizlilik.html`), çerez/analitik yok.
 
-Site, ziyaretçilere etkileşimli bir deneyim sunmak için özel olarak tasarlanmıştır. Karanlık/Aydınlık mod seçeneği, dinamik parçacık (particle) arka plan animasyonu ve projelerin detaylı incelenebileceği özel modal yapıları içerir.
+### 📂 Sergilenen Projeler
+1. **truereviews** — Google Maps yorumlarını 10 dilde özetleyen ücretsiz araç (canlı).
+2. **tweetalgo** — X tweet'lerini viral skor / spam riski ile analiz eden AI aracı (canlı).
+3. **git-to-portfolio** — GitHub profilini paylaşılabilir portfolyoya çevirir (canlı).
+4. **ai-watermark-cleaner**, **pdf-splitter**, **edge-tts-gui**, **llmfit** — masaüstü araçlar (repo).
 
-### ⭐ Öne Çıkan Özellikler
-
-*   **🎨 Dinamik Tema Yönetimi:** Kullanıcının tercihine göre veya sistem ayarlarına duyarlı **Dark/Light Mode** desteği.
-*   **🌐 Çoklu Dil Desteği (i18n):** Sayfa yenilenmeden anlık olarak değişebilen **Türkçe / İngilizce** dil altyapısı.
-*   **✨ Etkileşimli UI:** 
-    *   HTML5 Canvas ile yapılmış, fare hareketlerine duyarlı arka plan animasyonu.
-    *   "Glassmorphism" tasarımlı, bulanık arka planlı navbar ve kartlar.
-    *   Özel yapım proje modalı ve görsel galerisi (Slider & Lightbox).
-*   **📱 Tam Duyarlılık (Responsive):** Mobilden masaüstüne kadar tüm cihazlarda kusursuz görünüm.
-*   **📬 İletişim Formu:** Formspree entegrasyonu ile çalışan, AJAX tabanlı (sayfa yenilemeden) çalışan iletişim formu ve başarı bildirimleri (Toast notifications).
-
-### 🛠️ Kullanılan Teknolojiler
-
-*   **HTML5** (Semantik yapı)
-*   **CSS3** (Flexbox, Grid, CSS Variables, Animations)
-*   **JavaScript (ES6+)** (DOM Manipülasyonu, Class yapısı, Canvas API)
-*   **FontAwesome 6** (İkon seti)
-*   **Google Fonts** (Inter & Fira Code)
-
-### 📂 Portföy Projeleri
-
-Sitede sergilenen başlıca projeler:
-
-1.  **Kendisibir Mekan:** Üsküdar'da bir işletme için geliştirilen, dinamik yönetim panelli web sitesi.
-2.  **Crypto Scan:** 20+ kripto parayı anlık izleyen teknik analiz ve sinyal paneli.
-3.  **Simple CV Maker:** Anlık önizleme ile profesyonel özgeçmiş oluşturma aracı.
-
+### 🛠️ Teknoloji
+HTML5, CSS3 (Grid/Flex/variables), Vanilla JS (ES6+), self-host Inter + JetBrains Mono.
 
 ---
 
 <h2 id="-english">🇬🇧 English</h2>
 
-### 🚀 About The Project
+### 🚀 About
+Static, dependency-free personal portfolio. Single-file HTML + inline CSS/JS, no build step; served on GitHub Pages. Swiss-minimal design, dark/light theme, fully responsive, WCAG AA contrast.
 
-This project is a fully responsive and performance-optimized personal portfolio website developed using modern web technologies (HTML5, CSS3, Vanilla JS).
+### ⭐ Features
+* **🌐 Bilingual:** TR (`/`) + EN (`/en/`), reciprocal `hreflang` + nav language switcher.
+* **🎨 Theme:** dark/light with `localStorage` preference + system match.
+* **♿ Accessibility:** skip-link, `aria-expanded`, reduced-motion, content visible with JS off.
+* **⚡ Performance:** self-hosted variable fonts (CLS-free), WebP imagery, opacity-only reveal. Lighthouse mobile ~98.
+* **🔍 SEO:** canonical, Open Graph, Twitter Card, JSON-LD (Person/ProfilePage), robots.txt + sitemap.xml.
+* **📬 Contact:** no form; email / GitHub / Instagram / X channel links.
+* **⚖️ Legal:** KVKK/GDPR notice (`en/privacy.html`), no cookies/analytics.
 
-It is designed to offer an interactive experience to visitors. It features Dark/Light mode options, a dynamic particle background animation, and custom modal structures for detailed project viewing.
+### 📂 Featured Projects
+1. **truereviews** — free tool summarizing Google Maps reviews in 10 languages (live).
+2. **tweetalgo** — AI tool scoring X tweets for virality / spam risk (live).
+3. **git-to-portfolio** — turns a GitHub profile into a shareable portfolio (live).
+4. **ai-watermark-cleaner**, **pdf-splitter**, **edge-tts-gui**, **llmfit** — desktop tools (repos).
 
-### ⭐ Key Features
-
-*   **🎨 Dynamic Theme Management:** **Dark/Light Mode** support that adapts to user preference or system settings.
-*   **🌐 Multi-Language Support (i18n):** Instant **Turkish / English** language switching without page reload.
-*   **✨ Interactive UI:**
-    *   Mouse-responsive background animation built with HTML5 Canvas.
-    *   "Glassmorphism" designed navbar and cards with blur effects.
-    *   Custom-built project modal and image gallery (Slider & Lightbox).
-*   **📱 Fully Responsive:** Flawless appearance on all devices from mobile to desktop.
-*   **📬 Contact Form:** AJAX-based contact form (no page reload) integrated with Formspree, featuring Toast notifications.
-
-### 🛠️ Technologies Used
-
-*   **HTML5** (Semantic structure)
-*   **CSS3** (Flexbox, Grid, CSS Variables, Animations)
-*   **JavaScript (ES6+)** (DOM Manipulation, Classes, Canvas API)
-*   **FontAwesome 6** (Icon set)
-*   **Google Fonts** (Inter & Fira Code)
-
-### 📂 Portfolio Projects
-
-Featured projects showcased on the site:
-
-1.  **Kendisibir Mekan:** A website with a dynamic admin panel developed for a venue in Üsküdar.
-2.  **Crypto Scan:** A technical analysis and signal dashboard monitoring 20+ cryptocurrencies in real-time.
-3.  **Simple CV Maker:** A professional resume building tool with real-time preview functionality.
+### 🛠️ Tech
+HTML5, CSS3 (Grid/Flex/variables), Vanilla JS (ES6+), self-hosted Inter + JetBrains Mono.
 
 ---
 

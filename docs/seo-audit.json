@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-11-17T21:35:59.576Z",
+  "mode": "dir",
+  "pages": [
+    {
+      "url": "/en/index.html",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "/index.html",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "/404.html",
+      "findings": [
+        {
+          "level": "error",
+          "rule": "meta-description-missing",
+          "detail": "No meta description."
+        },
+        {
+          "level": "error",
+          "rule": "canonical-missing",
+          "detail": "No canonical link."
+        },
+        {
+          "level": "error",
+          "rule": "og-missing",
+          "detail": "Missing og:title."
+        },
+        {
+          "level": "error",
+          "rule": "og-missing",
+          "detail": "Missing og:description."
+        },
+        {
+          "level": "error",
+          "rule": "og-missing",
+          "detail": "Missing og:image."
+        },
+        {
+          "level": "error",
+          "rule": "og-missing",
+          "detail": "Missing og:url."
+        },
+        {
+          "level": "error",
+          "rule": "og-missing",
+          "detail": "Missing og:type."
+        },
+        {
+          "level": "error",
+          "rule": "twitter-missing",
+          "detail": "Missing twitter:card."
+        },
+        {
+          "level": "error",
+          "rule": "twitter-missing",
+          "detail": "Missing twitter:title."
+        },
+        {
+          "level": "error",
+          "rule": "twitter-missing",
+          "detail": "Missing twitter:description."
+        },
+        {
+          "level": "error",
+          "rule": "twitter-missing",
+          "detail": "Missing twitter:image."
+        },
+        {
+          "level": "warning",
+          "rule": "jsonld-missing",
+          "detail": "No JSON-LD structured data."
+        },
+        {
+          "level": "warning",
+          "rule": "noindex",
+          "detail": "Page or response declares noindex."
+        }
+      ],
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "url": "/en/privacy.html",
+      "findings": [
+        {
+          "level": "warning",
+          "rule": "jsonld-missing",
+          "detail": "No JSON-LD structured data."
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "/gizlilik.html",
+      "findings": [
+        {
+          "level": "warning",
+          "rule": "jsonld-missing",
+          "detail": "No JSON-LD structured data."
+        }
+      ],
+      "status": 200
+    }
+  ],
+  "site": {
+    "errors": [
+      {
+        "rule": "sitemap-url-not-found",
+        "detail": "https://kcguner.github.io/profile/ has no matching file in the build directory."
+      },
+      {
+        "rule": "sitemap-url-not-found",
+        "detail": "https://kcguner.github.io/profile/en/ has no matching file in the build directory."
+      },
+      {
+        "rule": "sitemap-url-not-found",
+        "detail": "https://kcguner.github.io/profile/gizlilik.html has no matching file in the build directory."
+      },
+      {
+        "rule": "sitemap-url-not-found",
+        "detail": "https://kcguner.github.io/profile/en/privacy.html has no matching file in the build directory."
+      }
+    ],
+    "warnings": [],
+    "filesTotal": 5,
+    "truncated": false,
+    "robots": {
+      "source": "file",
+      "hasSitemap": true,
+      "blocksAll": false,
+      "googlebotAllowed": true,
+      "aiAccess": {
+        "gptbot": true,
+        "claudebot": true,
+        "perplexitybot": true,
+        "google-extended": true
+      }
+    },
+    "sitemap": {
+      "source": "file",
+      "urls": 4,
+      "absolute": true,
+      "verified": false
+    },
+    "noindexPages": [
+      "/404.html"
+    ]
+  },
+  "errors": 15,
+  "warnings": 4
+}
