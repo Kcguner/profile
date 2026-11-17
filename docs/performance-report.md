@@ -20,6 +20,12 @@ JSON: /tmp/lh-mobile3.json (son), önceki turlar /tmp/lh-mobile.json, lh-mobile2
 | 1 | 71 | 2.9 | 0.225 | 470 | başlangıç (Google font swap + reveal translate) |
 | 2 | 88 | 1.8 | 0.225 | 50 | reveal opacity-only |
 | 3 | **98** | **2.4** | **0.033** | **0** | font self-host (block+preload), Google kaldırıldı |
+| canlı | **97** | 2.6 | **0.033** | **0** | deploy sonrası gerçek GitHub Pages (brotli+HTTP2+Fastly), FCP 0.9s |
+
+## Canlı ölçüm (deploy sonrası)
+- `https://kcguner.github.io/profile/` Lighthouse mobile perf **97** (≥90 ✓), CLS **0.033** (<0.1 ✓), TBT **0** (<200 ✓), FCP 0.9s.
+- **LCP 2.6s** — <2.5 eşiğinin ~0.1s üzerinde (ağ/CDN varyansı; yerel 2.4s). Sınırda; LCP görseli WebP+preload+fetchpriority ile optimize, tek koşu varyansı. Tekrar ölçüm/iyileştirme manuel not.
+- JSON: /tmp/lh-live.json.
 
 ## Yapılan optimizasyonlar
 - profile.jpg 204KB → profile.webp 75KB (800×800, cwebp q82); width/height + fetchpriority=high (LCP).
@@ -29,6 +35,6 @@ JSON: /tmp/lh-mobile3.json (son), önceki turlar /tmp/lh-mobile.json, lh-mobile2
 - render-blocking kaynak yok (font preload, CSS inline).
 
 ## Not / kalan
-- **Yerel proxy ölçümü**; canlı GitHub Pages (brotli+HTTP2+Fastly cache) farklı olabilir → deploy sonrası canlı Lighthouse yeniden koşulmalı.
+- ~~Canlı Lighthouse yeniden koşulmalı~~ ✓ koşuldu (perf 97; LCP 2.6s sınırda, ağ varyansı).
 - INP doğrudan ölçülmedi; TBT=0 proxy olarak kaydedildi (gate notu).
 - Cache header canlıda max-age=600 (GH Pages) ✓; local proxy'de yok (ölçüm artefaktı).

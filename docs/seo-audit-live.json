@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-11-17T22:00:04.808Z",
+  "mode": "url",
+  "pages": [
+    {
+      "url": "https://kcguner.github.io/profile/",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "https://kcguner.github.io/profile/en/",
+      "findings": [],
+      "status": 200,
+      "requestedUrl": "https://kcguner.github.io/profile/en",
+      "redirects": [
+        {
+          "status": 301,
+          "location": "https://kcguner.github.io/profile/en/"
+        }
+      ]
+    },
+    {
+      "url": "https://kcguner.github.io/profile/gizlilik.html",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "https://kcguner.github.io/profile/en/privacy.html",
+      "findings": [],
+      "status": 200
+    }
+  ],
+  "site": {
+    "errors": [
+      {
+        "rule": "robots-not-200",
+        "detail": "robots.txt is not 200."
+      },
+      {
+        "rule": "sitemap-not-200",
+        "detail": "sitemap.xml is not 200."
+      },
+      {
+        "rule": "sitemap-empty",
+        "detail": "sitemap.xml has no <loc> entries."
+      }
+    ],
+    "warnings": [
+      {
+        "rule": "nav-only-links",
+        "detail": "/profile/gizlilik.html is linked only from navigation/footer; add a contextual link where content supports it."
+      },
+      {
+        "rule": "nav-only-links",
+        "detail": "/profile/en/privacy.html is linked only from navigation/footer; add a contextual link where content supports it."
+      }
+    ],
+    "robots": {
+      "status": 404,
+      "hasSitemap": false,
+      "blocksAll": false,
+      "googlebotAllowed": true,
+      "aiAccess": {
+        "gptbot": true,
+        "claudebot": true,
+        "perplexitybot": true,
+        "google-extended": true
+      }
+    },
+    "sitemap": {
+      "status": 404,
+      "urls": 0,
+      "absolute": true,
+      "verified": true
+    },
+    "linksDiscovered": 4,
+    "truncated": false,
+    "linkGraph": {
+      "inbound": {
+        "/profile/en": 2,
+        "/profile/gizlilik.html": 1,
+        "/profile": 2,
+        "/profile/en/privacy.html": 1
+      },
+      "contextualInbound": {
+        "/profile": 1,
+        "/profile/en": 1
+      },
+      "depth": {
+        "/profile": 0,
+        "/profile/en": 1,
+        "/profile/gizlilik.html": 1,
+        "/profile/en/privacy.html": 2
+      },
+      "orphans": [],
+      "deepPages": [],
+      "navOnlyPages": [
+        "/profile/gizlilik.html",
+        "/profile/en/privacy.html"
+      ],
+      "complete": true
+    },
+    "noindexPages": []
+  },
+  "errors": 3,
+  "warnings": 2
+}

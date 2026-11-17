@@ -14,13 +14,13 @@
 | 9 | perf (reveal + font self-host) | done | perf 98, CLS 0.033 |
 | 10 | yeniden denetim + test + Lighthouse | done | dir 0 hata (index/en), test-report, lh-mobile3 |
 | 11 | docs suite + gate | done | bu dosya + quality-gate.md |
-| 12 | deploy + canlı doğrulama | **pending** | kullanıcı onayı bekliyor |
+| 12 | deploy + canlı doğrulama | done | onay "Evet, push et"; commit d26c16e; canlı 200'ler, --url 0 sayfa bulgusu, Lighthouse 97 |
 
 ## Onaylar (kayıtlı)
 - Düzeltme: "Şimdi düzelt" (2026-11-18).
 - Silme: açık dosya-listesi onayı (2026-11-18).
 - EN ekleme, AI-allow, analitik-yok: kullanıcı seçimi.
-- Deploy: **henüz onay yok** (skill: deploy açık onay gerektirir).
+- Deploy: "Evet, push et" (2026-11-18, AskUserQuestion) → commit d26c16e push edildi.
 
 ## Auto-advanced
 - Rutin stage'ler (3-11) onaylı fix kapsamında auto-advanced; ölçümler ilgili raporlarda.
