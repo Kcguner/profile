@@ -15,6 +15,7 @@
 | 10 | yeniden denetim + test + Lighthouse | done | dir 0 hata (index/en), test-report, lh-mobile3 |
 | 11 | docs suite + gate | done | bu dosya + quality-gate.md |
 | 12 | deploy + canlı doğrulama | done | onay "Evet, push et"; commit d26c16e; canlı 200'ler, --url 0 sayfa bulgusu, Lighthouse 97 |
+| 13 | içerik: ChessTemper + web-brief2launch + canlı görseller | done | 9 kart; 5 WebP poster (TR+EN); stats 04/09; yerel audit 0 hata; render doğrulandı |
 
 ## Onaylar (kayıtlı)
 - Düzeltme: "Şimdi düzelt" (2026-11-18).

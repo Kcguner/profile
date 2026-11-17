@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-11-17T22:12:27.050Z",
+  "mode": "url",
+  "pages": [
+    {
+      "url": "http://localhost:8734/",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8734/en/",
+      "findings": [],
+      "status": 200,
+      "requestedUrl": "http://localhost:8734/en",
+      "redirects": [
+        {
+          "status": 301,
+          "location": "http://localhost:8734/en/"
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:8734/gizlilik.html",
+      "findings": [],
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8734/en/privacy.html",
+      "findings": [],
+      "status": 200
+    }
+  ],
+  "site": {
+    "errors": [],
+    "warnings": [
+      {
+        "rule": "nav-only-links",
+        "detail": "/gizlilik.html is linked only from navigation/footer; add a contextual link where content supports it."
+      },
+      {
+        "rule": "nav-only-links",
+        "detail": "/en/privacy.html is linked only from navigation/footer; add a contextual link where content supports it."
+      }
+    ],
+    "robots": {
+      "status": 200,
+      "hasSitemap": true,
+      "blocksAll": false,
+      "googlebotAllowed": true,
+      "aiAccess": {
+        "gptbot": true,
+        "claudebot": true,
+        "perplexitybot": true,
+        "google-extended": true
+      }
+    },
+    "sitemap": {
+      "status": 200,
+      "urls": 4,
+      "absolute": true,
+      "verified": true
+    },
+    "linksDiscovered": 4,
+    "truncated": false,
+    "linkGraph": {
+      "inbound": {
+        "/en": 2,
+        "/gizlilik.html": 1,
+        "/": 2,
+        "/en/privacy.html": 1
+      },
+      "contextualInbound": {
+        "/": 1,
+        "/en": 1
+      },
+      "depth": {
+        "/": 0,
+        "/en": 1,
+        "/gizlilik.html": 1,
+        "/en/privacy.html": 2
+      },
+      "orphans": [],
+      "deepPages": [],
+      "navOnlyPages": [
+        "/gizlilik.html",
+        "/en/privacy.html"
+      ],
+      "complete": true
+    },
+    "noindexPages": []
+  },
+  "errors": 0,
+  "warnings": 2
+}
