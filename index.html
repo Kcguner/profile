@@ -48,14 +48,14 @@
   --gut:clamp(20px,5vw,72px);
 }
 [data-theme="dark"]{
-  --bg:#101114;--card:#17181C;--ink:#F2F1EC;--ink-60:#A7A9B0;--ink-40:#6E7078;
+  --bg:#101114;--card:#17181C;--ink:#F2F1EC;--ink-60:#A7A9B0;
   --line:#2A2B30;--line-2:#202126;--acc:#7B93FF;--acc-soft:rgba(123,147,255,.12);--acc-soft-2:rgba(123,147,255,.22);--ink-40:#8A8C94;
 }
 [data-theme="dark"] nav{background:rgba(16,17,20,.85)}
 [data-theme="dark"] .stats{background:#17181C}
 [data-theme="dark"] .avail,[data-theme="dark"] .btn.ghost,[data-theme="dark"] .burger,[data-theme="dark"] .theme-btn{background:var(--card)}
-[data-theme="dark"] .btn.solid{background:var(--acc);color:#fff}
-[data-theme="dark"] .contact{background:#17181C}
+[data-theme="dark"] .btn.solid{background:var(--acc);color:#101114}
+[data-theme="dark"] .contact-in{background:#17181C}
 [data-theme="dark"] .meta-card{box-shadow:0 18px 44px rgba(0,0,0,.45)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -64,6 +64,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:4
   -webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
 ::selection{background:var(--acc);color:#fff}
 a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
 .mono{font-family:var(--mono)}
 
@@ -90,22 +91,23 @@ nav{position:sticky;top:0;z-index:80;background:rgba(250,250,247,.88);backdrop-f
 .theme-btn:hover{border-color:var(--acc);color:var(--acc)}
 .burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;
   align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.nav-act{display:flex;align-items:center;gap:10px}
 .burger i{display:block;width:16px;height:1.5px;background:var(--ink)}
 
 /* ---------- HERO ---------- */
 .hero{border-bottom:1px solid var(--line)}
 .hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);
-  padding:clamp(28px,4vw,56px) 0 clamp(44px,6vw,80px);align-items:center}
+  padding:clamp(28px,4vw,56px) var(--gut) clamp(44px,6vw,80px);align-items:center}
 .kicker{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--ink-40);margin-bottom:clamp(22px,3vw,34px)}
 .kicker .no{color:var(--acc)}
 .kicker .rule{width:44px;height:1px;background:var(--ink-40);flex:none}
-h1{font-size:clamp(42px,7.6vw,104px);font-weight:300;line-height:1.02;letter-spacing:-.045em;text-wrap:balance}
+h1{font-size:clamp(32px,4.4vw,56px);font-weight:300;line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
 h1 b{font-weight:600}
 h1 .u{position:relative;color:var(--acc);font-weight:500;white-space:nowrap}
 h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;height:.1em;background:var(--acc-soft-2);
   z-index:-1}
-.hero-p{margin-top:clamp(24px,3vw,34px);color:var(--ink-60);font-size:clamp(15px,1.3vw,17px);line-height:1.85;max-width:50ch}
+.hero-p{margin-top:clamp(20px,2.6vw,28px);color:var(--ink-60);font-size:clamp(15px,1.2vw,16px);line-height:1.8;max-width:min(50ch,100%)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(26px,3.2vw,38px)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;border-radius:100px;
   padding:15px 28px;transition:.3s cubic-bezier(.2,.7,.3,1)}
@@ -118,20 +120,20 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 
 /* hero side — meta card */
 .meta-card{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden;align-self:start;
-  box-shadow:0 18px 44px rgba(20,22,30,.07)}
-.meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;margin:20px 20px 0}
+  width:100%;max-width:360px;justify-self:end;box-shadow:0 18px 44px rgba(20,22,30,.07)}
+.meta-card .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;margin:16px 16px 0}
 .meta-card .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);filter:saturate(.92) contrast(1.02);
   transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
 .meta-card:hover .ph img{transform:scale(1.11)}
-.meta-card .ph .tag{position:absolute;top:auto;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:100px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 13px;color:var(--ink);
-  display:flex;align-items:center;gap:7px}
+.meta-card .ph .tag{position:absolute;top:auto;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--card);border-radius:100px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:7px 14px;color:var(--ink);z-index:2;
+  box-shadow:0 6px 18px rgba(10,11,14,.22);display:flex;align-items:center;gap:7px}
 .meta-card .ph .tag i{width:6px;height:6px;border-radius:50%;background:#27C47A;font-style:normal}
-.meta-card .rows{padding:8px 22px 14px}
-.mrow{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line-2);font-size:13.5px}
+.meta-card .rows{padding:6px 18px 12px}
+.mrow{display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-2);font-size:13px}
 .mrow:last-child{border-bottom:0}
-.mrow dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);
-  width:92px;flex:none}
+.mrow dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);
+  width:84px;flex:none}
 .mrow dd{color:var(--ink);font-weight:500}
 
 /* ---------- STATS BAR ---------- */
@@ -141,7 +143,7 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .stat:first-child{border-left:0;padding-left:0}
 .stat b{display:block;font-size:clamp(26px,3.4vw,44px);font-weight:300;letter-spacing:-.04em;line-height:1}
 .stat b em{font-style:normal;color:var(--acc)}
-.stat span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+.stat span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink-40);margin-top:10px}
 
 /* ---------- SECTION HEAD ---------- */
@@ -151,7 +153,7 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .shead .l .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--acc);margin-bottom:14px;display:flex;align-items:center;gap:12px}
 .shead .l .lbl::before{content:'';width:26px;height:1px;background:var(--acc)}
-.shead h2{font-size:clamp(32px,5vw,60px);font-weight:300;letter-spacing:-.04em;line-height:1.02}
+.shead h2{font-size:clamp(28px,4vw,48px);font-weight:300;letter-spacing:-.04em;line-height:1.02}
 .shead h2 b{font-weight:600}
 .shead .r{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-40);padding-bottom:6px}
 
@@ -160,17 +162,16 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
   padding-top:clamp(30px,4vw,48px)}
 .pcard{border:1px solid var(--line);border-radius:20px;background:var(--card);overflow:hidden;
   transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s,border-color .4s;display:flex;flex-direction:column}
-.pcard:hover{transform:translateY(-7px);box-shadow:0 26px 56px rgba(20,22,30,.11);border-color:#D8D8D0}
-.pcard.wide{grid-column:1/-1}
-.pframe{position:relative;border-bottom:1px solid var(--line);background:#fff}
+.pcard:hover{transform:translateY(-7px);box-shadow:0 26px 56px rgba(20,22,30,.11);border-color:var(--acc-soft-2)}
+.pframe{position:relative;border-bottom:1px solid var(--line);background:var(--card)}
 .pframe .bar{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line-2);
-  font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--ink-40)}
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-40)}
 .pframe .bar .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);flex:none}
 .pframe .bar .u{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pframe .bar .live{margin-left:auto;color:var(--acc);font-weight:500;letter-spacing:.12em;flex:none}
-.pframe .poster{width:100%;aspect-ratio:16/9;border:0;display:block;background:#fff}
+.pframe .poster{width:100%;aspect-ratio:16/9;border:0;display:block;background:var(--card)}
 .pframe .in{overflow:hidden}
-.poster{position:relative;display:block;width:100%;border:0;padding:0;cursor:pointer;overflow:hidden;background:#fff;
+.poster{position:relative;display:block;width:100%;border:0;padding:0;cursor:pointer;overflow:hidden;background:var(--card);
   aspect-ratio:16/9}
 .poster img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
   transition:transform .9s cubic-bezier(.2,.7,.3,1)}
@@ -178,20 +179,22 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .poster .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   background:rgba(16,17,20,.58);color:#fff;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
   opacity:0;transition:.32s;text-align:center;padding:14px}
-.poster .ov small{font-size:10px;color:rgba(255,255,255,.72)}
+.poster .ov small{font-size:11px;color:rgba(255,255,255,.78)}
 .pcard:hover .poster .ov{opacity:1}
 .poster .blk{position:absolute;top:12px;right:12px;background:rgba(16,17,20,.85);color:#fff;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;padding:6px 11px;border-radius:100px;z-index:2}
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;padding:6px 11px;border-radius:100px;z-index:2;
+  opacity:0;transition:opacity .3s}
+.pcard:hover .poster .blk,.poster:focus-visible .blk{opacity:1}
 .pbody{padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;flex:1}
 .pbody .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .pbody h3{font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.03em}
-.pbody .yr{font-family:var(--mono);font-size:10.5px;color:var(--ink-40);letter-spacing:.1em;flex:none}
+.pbody .yr{font-family:var(--mono);font-size:11px;color:var(--ink-40);letter-spacing:.1em;flex:none}
 .pbody p{margin-top:13px;color:var(--ink-60);font-size:14.5px;line-height:1.75}
 .pbody .result{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc)}
 .ptech{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-.ptech span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-60);
+.ptech span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-60);
   background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:6px 12px;transition:.25s}
-.pcard:hover .ptech span{border-color:#D8D8D0;background:#fff}
+.pcard:hover .ptech span{border-color:var(--acc-soft-2);background:var(--acc-soft)}
 .plink{margin-top:auto;padding-top:22px;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
   font-size:14px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px;transition:.28s}
 .plink i{font-style:normal;transition:transform .3s}
@@ -201,12 +204,24 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .plinks .plink{margin-top:0;padding-top:0}
 .ttlwrap{display:flex;align-items:center;gap:10px;min-width:0}
 .ttlwrap h3{overflow-wrap:anywhere}
-.fork{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--ink-60);border:1px solid var(--line);
+.fork{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-60);border:1px solid var(--line);
   border-radius:100px;padding:4px 9px;flex:none}
-.poster .mock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  padding:16px;text-align:center;color:#fff;background:linear-gradient(135deg,#0B1020 0%,#1B2A6B 55%,#2545FF 100%)}
-.poster .mock .m{font-size:clamp(22px,3.2vw,38px);font-weight:600;letter-spacing:-.03em;overflow-wrap:anywhere}
-.poster .mock .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;opacity:.68;overflow-wrap:anywhere}
+
+/* ---------- REPO LIST — compact secondary rows ---------- */
+.rlist{margin-top:clamp(26px,3.4vw,44px);border-top:1px solid var(--line)}
+.rrow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:clamp(14px,2vw,26px);
+  padding:20px 0;border-bottom:1px solid var(--line);align-items:start;transition:background .3s}
+.rrow:focus-within{background:var(--acc-soft)}
+.rrow .n{font-family:var(--mono);font-size:12px;color:var(--acc);padding-top:4px}
+.rrow .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rrow h3{font-size:17px;font-weight:600;letter-spacing:-.02em;overflow-wrap:anywhere}
+.rrow p{margin-top:6px;color:var(--ink-60);font-size:13.5px;line-height:1.65;max-width:75ch}
+.rrow .ptech{margin-top:10px}
+.rrow .ptech span{padding:5px 10px}
+.rrow .side{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.rrow .ru{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;color:var(--ink-40);
+  letter-spacing:.04em;overflow-wrap:anywhere;text-align:right;transition:color .25s}
+.rrow .ru:hover{color:var(--acc)}
 
 /* ---------- SKILLS ---------- */
 .skills{margin-top:clamp(26px,3.4vw,40px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
@@ -214,7 +229,7 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 .skl{padding:20px 0;border-bottom:1px solid var(--line)}
 .skl .t{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .skl .t .nm{font-size:15.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:11px;min-width:0}
-.skl .t .nm small{font-family:var(--mono);font-weight:400;font-size:10px;color:var(--ink-40);letter-spacing:.08em;overflow-wrap:anywhere}
+.skl .t .nm small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink-40);letter-spacing:.08em;overflow-wrap:anywhere}
 .skl .t .pc{font-family:var(--mono);font-size:12px;color:var(--acc)}
 .skl .bar{margin-top:14px;height:3px;background:var(--line-2);border-radius:100px;overflow:hidden}
 .skl .bar i{display:block;height:100%;width:0;border-radius:100px;
@@ -223,28 +238,29 @@ h1 .u::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.05em;
 /* ---------- PROCESS — swiss numbered list ---------- */
 .proc{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);padding-top:clamp(40px,6vw,72px);
   display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px)}
-.proc .l h2{font-size:clamp(28px,4vw,48px);font-weight:300;letter-spacing:-.04em;line-height:1.06}
+.proc .l h2{font-size:clamp(26px,3.4vw,40px);font-weight:300;letter-spacing:-.04em;line-height:1.06}
 .proc .l h2 b{font-weight:600}
 .proc .l p{margin-top:20px;color:var(--ink-60);font-size:15px;line-height:1.8;max-width:38ch}
 .steps{display:flex;flex-direction:column}
 .step{display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(14px,2vw,26px);padding:22px 0;
-  border-bottom:1px solid var(--line);transition:padding-left .4s cubic-bezier(.2,.7,.3,1)}
-.step:hover{padding-left:12px}
+  border-bottom:1px solid var(--line);transition:background .3s}
+.step:focus-within{background:var(--acc-soft)}
 .step .n{font-family:var(--mono);font-size:12px;color:var(--acc);padding-top:3px}
 .step h3{font-size:16.5px;font-weight:600;letter-spacing:-.01em}
 .step p{margin-top:8px;color:var(--ink-60);font-size:14px;line-height:1.7;max-width:52ch}
 
 /* ---------- CONTACT ---------- */
-.contact{margin-top:clamp(66px,10vw,130px);background:var(--ink);color:#fff;border-radius:28px;
-  margin-bottom:clamp(66px,10vw,130px);overflow:hidden;position:relative}
-.contact::before{content:'';position:absolute;top:-180px;right:-120px;width:520px;height:520px;border-radius:50%;
+.contact{margin-top:clamp(66px,10vw,130px);color:#fff;
+  margin-bottom:clamp(66px,10vw,130px);position:relative}
+.contact-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:center;
+  padding:clamp(44px,6.5vw,90px) clamp(28px,5vw,72px);position:relative;
+  background:var(--ink);border-radius:28px;overflow:hidden}
+.contact-in::before{content:'';position:absolute;top:-180px;right:-120px;width:520px;height:520px;border-radius:50%;
   background:radial-gradient(circle,rgba(37,69,255,.35),transparent 65%);pointer-events:none}
-.contact-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);
-  padding:clamp(44px,6.5vw,90px) clamp(28px,5vw,72px);position:relative}
 .contact .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:#8FA0FF;margin-bottom:18px;display:flex;align-items:center;gap:12px}
 .contact .lbl::before{content:'';width:26px;height:1px;background:#8FA0FF}
-.contact h2{font-size:clamp(34px,5.2vw,64px);font-weight:300;letter-spacing:-.045em;line-height:1.04}
+.contact h2{font-size:clamp(30px,4.2vw,52px);font-weight:300;letter-spacing:-.045em;line-height:1.04}
 .contact h2 b{font-weight:600;color:#8FA0FF}
 .contact p{margin-top:22px;color:rgba(255,255,255,.66);font-size:15.5px;line-height:1.8;max-width:40ch}
 .contact .mail{display:inline-flex;align-items:center;gap:11px;margin-top:28px;font-family:var(--mono);
@@ -286,19 +302,33 @@ footer{border-top:1px solid var(--line)}
   .nav-links a{padding:15px 0;border-bottom:1px solid var(--line-2);width:100%;font-size:15px}
   .nav-links a::after{display:none}
   .burger{display:flex}
+  .plink{min-height:44px}
+  .foot a{min-height:44px;display:inline-flex;align-items:center}
+  .avail{min-height:44px}
+  .theme-btn{min-height:44px}
+  .rrow .ru{min-height:44px}
 }
 @media(max-width:620px){
+  :root{--gut:24px}
   .stats-in{grid-template-columns:1fr}
   .stat{border-left:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:20px}
   .stat:last-child{border-bottom:0}
   .foot{flex-direction:column;align-items:flex-start;gap:9px}
   .logo small{display:none}
+  .logo{font-size:13px;gap:9px}
+  .theme-btn{padding:10px 12px}
+  .avail{padding:10px 11px}
+  .theme-btn .tw{display:none}
   .avail span{display:none}
   .avail{padding:10px 13px}
+  .plink{padding:10px 0}
+  .rrow{grid-template-columns:34px minmax(0,1fr);padding:18px 0}
+  .rrow .side{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;flex-wrap:wrap}
+  .rrow .ru{text-align:left}
 }
-@media(max-width:620px){.plink{padding:10px 0}}
 @media(max-width:400px){
-  .logo{font-size:14px}
+  .logo{font-size:13px}
+  .nav-act{gap:6px}
   .contact .mail{font-size:12.5px;padding:13px 18px;overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){
@@ -306,7 +336,7 @@ footer{border-top:1px solid var(--line)}
   .js .rv{opacity:1;transform:none}
   .skl .bar i{width:var(--w)}
 }
-@media (hover:none){.poster .ov{opacity:1}}
+@media (hover:none){.poster .ov{opacity:1}.poster .blk{display:none}}
 </style>
 </head>
 <body>
@@ -321,9 +351,9 @@ footer{border-top:1px solid var(--line)}
       <a href="#yontem">Yöntem</a>
       <a href="#iletisim">İletişim</a>
     </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <a href="#iletisim" class="avail"><i></i><span>Yeni projeye açık</span></a>
-      <button class="theme-btn" id="themeBtn" type="button" aria-label="Tema" title="Tema">◐ Tema</button>
+    <div class="nav-act">
+      <a href="#iletisim" class="avail" aria-label="Yeni projeye açık"><i></i><span>Yeni projeye açık</span></a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Tema" title="Tema">◐ <span class="tw">Tema</span></button>
       <a class="theme-btn" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
       <button class="burger" id="burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="navLinks"><i></i><i></i></button>
     </div>
@@ -371,7 +401,7 @@ footer{border-top:1px solid var(--line)}
       <p class="lbl">02 — Seçili İşler</p>
       <h2>Projeler<b>im</b></h2>
     </div>
-    <span class="r">09 DEPO · SEÇİLİ İŞLER</span>
+    <span class="r">4 CANLI · 5 REPO</span>
   </div>
 
   <div class="pgrid">
@@ -443,28 +473,6 @@ footer{border-top:1px solid var(--line)}
 
     <article class="pcard rv">
       <div class="pframe">
-        <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/web-brief2launch</span><span class="live">REPO</span></div>
-        <div class="in">
-          <a class="poster" href="https://github.com/Kcguner/web-brief2launch" target="_blank" rel="noopener" aria-label="web-brief2launch GitHub reposunu yeni sekmede aç">
-            <span class="blk">GitHub — yeni sekmede aç</span>
-            <img src="images/projects/web-brief2launch.webp" alt="web-brief2launch GitHub repo sayfası ekran görüntüsü" width="1280" height="720" loading="lazy">
-            <span class="ov">GitHub ↗<small>repo yeni sekmede açılır</small></span>
-          </a>
-        </div>
-      </div>
-      <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>web-brief2launch</h3></span><span class="yr">04</span></div>
-        <p>Bir websitesini brief'ten yayına taşıyıp çalışır tutan agent skill seti: 13 gate'li aşama, tek PASS/FAIL release raporu; her coding agent'ta çalışır.</p>
-        <p class="result">→ Brief'ten yayına kadar tüm süreci gate'li aşamalarla yönetiyor.</p>
-        <div class="ptech"><span>Agent Skills</span><span>JavaScript</span><span>Node</span><span>13 Stage</span><span>Quality Gate</span></div>
-        <div class="plinks">
-          <a href="https://github.com/Kcguner/web-brief2launch" target="_blank" rel="noopener" class="plink">GitHub <i>↗</i></a>
-        </div>
-      </div>
-    </article>
-
-    <article class="pcard rv">
-      <div class="pframe">
         <div class="bar"><span class="dot"></span><span class="u">git-to-portfolio.vercel.app</span><span class="live">● CANLI</span></div>
         <div class="in">
           <a class="poster" href="https://git-to-portfolio.vercel.app" target="_blank" rel="noopener" aria-label="git-to-portfolio canlı siteyi yeni sekmede aç">
@@ -475,7 +483,7 @@ footer{border-top:1px solid var(--line)}
         </div>
       </div>
       <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>git-to-portfolio</h3></span><span class="yr">05</span></div>
+        <div class="top"><span class="ttlwrap"><h3>git-to-portfolio</h3></span><span class="yr">04</span></div>
         <p>Public GitHub profilini kayıtsız veritabanısız paylaşılabilir yazdırılabilir portfolyoya çevirir.</p>
         <p class="result">→ GitHub profilini tek tıkla paylaşılabilir portfolyoya çeviriyor.</p>
         <div class="ptech"><span>Next.js 16</span><span>TypeScript</span><span>Node 20</span><span>Vercel</span><span>CI</span></div>
@@ -486,63 +494,66 @@ footer{border-top:1px solid var(--line)}
       </div>
     </article>
 
-    <article class="pcard rv">
-      <div class="pframe">
-        <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/ai-watermark-cleaner</span><span class="live">REPO</span></div>
+  </div>
+
+  <div class="rlist">
+    <article class="rrow rv">
+      <span class="n">05</span>
+      <div class="main">
+        <div class="top"><h3>web-brief2launch</h3></div>
+        <p>Bir websitesini brief'ten yayına taşıyıp çalışır tutan agent skill seti: 13 gate'li aşama, tek PASS/FAIL release raporu; her coding agent'ta çalışır.</p>
+        <div class="ptech"><span>Agent Skills</span><span>JavaScript</span><span>Node</span><span>13 Stage</span><span>Quality Gate</span></div>
       </div>
-      <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>ai-watermark-cleaner</h3></span><span class="yr">06</span></div>
+      <div class="side">
+        <a class="ru" href="https://github.com/Kcguner/web-brief2launch" target="_blank" rel="noopener">github.com/Kcguner/web-brief2launch ↗</a>
+      </div>
+    </article>
+
+    <article class="rrow rv">
+      <span class="n">06</span>
+      <div class="main">
+        <div class="top"><h3>ai-watermark-cleaner</h3></div>
         <p>PNG JPG PDF PPTX filigranlarını cihaz üzerinde localhost temizleyen gizlilik odaklı araç.</p>
-        <p class="result">→ Dosyalar cihazdan çıkmadan temizleniyor.</p>
         <div class="ptech"><span>Python</span><span>Flask</span><span>OpenCV</span><span>Pillow</span></div>
-        <div class="plinks">
-          <a href="https://github.com/Kcguner/ai-watermark-cleaner" target="_blank" rel="noopener" class="plink">GitHub <i>↗</i></a>
-        </div>
+      </div>
+      <div class="side">
+        <a class="ru" href="https://github.com/Kcguner/ai-watermark-cleaner" target="_blank" rel="noopener">github.com/Kcguner/ai-watermark-cleaner ↗</a>
       </div>
     </article>
 
-    <article class="pcard rv">
-      <div class="pframe">
-        <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/pdf-splitter</span><span class="live">REPO</span></div>
-      </div>
-      <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>pdf-splitter</h3></span><span class="yr">07</span></div>
-        <p>PDF tek tıkla sayfa sayfa aralık birleştirme sürükle-bırak masaüstü uygulaması.</p>
-        <p class="result">→ Toplu PDF işini tek tıkla bitiriyor.</p>
+    <article class="rrow rv">
+      <span class="n">07</span>
+      <div class="main">
+        <div class="top"><h3>pdf-splitter</h3></div>
+        <p>PDF'leri tek tıkla sayfa sayfa bölen, aralık seçip birleştiren sürükle-bırak masaüstü uygulaması.</p>
         <div class="ptech"><span>Python</span><span>CustomTkinter</span><span>pypdf</span><span>PyMuPDF</span></div>
-        <div class="plinks">
-          <a href="https://github.com/Kcguner/pdf-splitter" target="_blank" rel="noopener" class="plink">GitHub <i>↗</i></a>
-        </div>
+      </div>
+      <div class="side">
+        <a class="ru" href="https://github.com/Kcguner/pdf-splitter" target="_blank" rel="noopener">github.com/Kcguner/pdf-splitter ↗</a>
       </div>
     </article>
 
-    <article class="pcard rv">
-      <div class="pframe">
-        <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/edge-tts-gui</span><span class="live">REPO</span></div>
-      </div>
-      <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>edge-tts-gui</h3><span class="fork">FORK</span></span><span class="yr">08</span></div>
-        <p>Edge TTS ile 300+ ses doğal seslendirme MP3 kayıt masaüstü uygulaması.</p>
-        <p class="result">→ 300+ sesle ücretsiz seslendirme.</p>
+    <article class="rrow rv">
+      <span class="n">08</span>
+      <div class="main">
+        <div class="top"><h3>edge-tts-gui</h3><span class="fork">FORK</span></div>
+        <p>Edge TTS ile 300+ sesle doğal seslendirme yapıp MP3 olarak kaydeden masaüstü uygulaması.</p>
         <div class="ptech"><span>Python</span><span>Edge TTS</span><span>Desktop GUI</span></div>
-        <div class="plinks">
-          <a href="https://github.com/Kcguner/edge-tts-gui" target="_blank" rel="noopener" class="plink">GitHub <i>↗</i></a>
-        </div>
+      </div>
+      <div class="side">
+        <a class="ru" href="https://github.com/Kcguner/edge-tts-gui" target="_blank" rel="noopener">github.com/Kcguner/edge-tts-gui ↗</a>
       </div>
     </article>
 
-    <article class="pcard rv">
-      <div class="pframe">
-        <div class="bar"><span class="dot"></span><span class="u">github.com/Kcguner/llmfit</span><span class="live">REPO</span></div>
-      </div>
-      <div class="pbody">
-        <div class="top"><span class="ttlwrap"><h3>llmfit</h3><span class="fork">FORK</span></span><span class="yr">09</span></div>
+    <article class="rrow rv">
+      <span class="n">09</span>
+      <div class="main">
+        <div class="top"><h3>llmfit</h3><span class="fork">FORK</span></div>
         <p>LLM donanım boyutlandırma aracının çapraz platform masaüstü sürümü.</p>
-        <p class="result">→ Donanımına uygun modeli seçmene yardım ediyor.</p>
         <div class="ptech"><span>Rust</span><span>Desktop</span><span>CI/CD</span></div>
-        <div class="plinks">
-          <a href="https://github.com/Kcguner/llmfit" target="_blank" rel="noopener" class="plink">GitHub <i>↗</i></a>
-        </div>
+      </div>
+      <div class="side">
+        <a class="ru" href="https://github.com/Kcguner/llmfit" target="_blank" rel="noopener">github.com/Kcguner/llmfit ↗</a>
       </div>
     </article>
   </div>
@@ -594,7 +605,7 @@ footer{border-top:1px solid var(--line)}
         yanınızdayım.</p>
     </div>
     <div class="cform chan">
-      <a class="mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=kcguner@gmail.com" target="_blank" rel="noopener">kcguner@gmail.com <i>↗</i></a>
+      <a class="mail" href="mailto:kcguner@gmail.com">kcguner@gmail.com <i>↗</i></a>
       <a class="mail" href="https://github.com/Kcguner" target="_blank" rel="noopener">GitHub — Kcguner <i>↗</i></a>
       <a class="mail" href="https://www.instagram.com/kaancang1/" target="_blank" rel="noopener">Instagram — @kaancang1 <i>↗</i></a>
       <a class="mail" href="https://x.com/Kaancang1" target="_blank" rel="noopener">X — @Kaancang1 <i>↗</i></a>
